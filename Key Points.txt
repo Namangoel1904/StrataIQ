@@ -1,0 +1,39 @@
+- Personalization is very very powerful we can leverage with AI 
+How do you understand the user's needs, the user's habit, and provide them hyper personalised experience ?
+One platform but no matter which user there is you are able to provide them with a personalised experience.
+
+- How can you use AI to build engaging experiences?
+- How do you best understand your user?
+
+Key Points:
+- Personalization
+- Security
+- User experience
+
+How AI can help in world of collaboration, world of knowledge management?
+
+- Not AI to make decisions but the decision makers in the organisation how we provide them with enough knowledge and information they can use to make those decisions Now
+
+- Agent platforms on Google Cloud
+
+- People really should say why is this a prototype I would love this to be an actual application that I can use?
+
+- Any UI you are having will Talk to a database and database will talk to an ai
+
+- Scalability, The right choice will decide the right runtime on Google Cloud that can scale automatically for you
+example Cloud run, load balancer, caching
+
+- A progressive architecture is very important
+
+Database available on Google Cloud [For DIY rag]
+- Documents Store
+- Object store
+- Colum nary
+- Data warehouse
+- Single point database
+- Globally distributed databases
+
+- Ready made rack solution [Out of Box RAG]
+On the agent platform there is a vector search Capability As a service. Give it your documentation and point it to your database and this feature will behave as a roadmap RAG
+
+- ADK

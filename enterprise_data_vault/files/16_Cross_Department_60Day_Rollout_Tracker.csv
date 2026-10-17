@@ -1,0 +1,8 @@
+task_id,dept_id,assigned_to_user_id,layer_id,task_title,due_date,status,dependency_task_id,blocker_note
+TSK-01,DEPT-LEG,USR-UPPER-HR-002,3,Execute NovaShield Master Service Agreement,2026-10-14,COMPLETED,NONE,Signed and archived
+TSK-02,DEPT-FIN,USR-UPPER-FIN-001,3,Approve INR 38.4L Parental Premium Variance Option,2026-10-18,PENDING_CFO_DECISION,TSK-01,"Awaiting CFO selection of Option A, B, or C"
+TSK-03,DEPT-FIN,USR-UPPER-FIN-001,2,Lock October Payroll Co-Pay Deductions,2026-10-20,CONFLICT_FLAGGED,TSK-05,"CONFLICT: Scheduled for Oct 20, but IT SSO portal (TSK-05) isn't ready until Oct 23!"
+TSK-04,DEPT-HR,USR-MID-HR-003,2,Migrate 142 Pending Employee Parental Riders,2026-10-22,AT_RISK,TSK-02,142 employees awaiting cutoff extension & portal access
+TSK-05,DEPT-IT,USR-MID-IT-004,2,Deploy SAML 2.0 SSO & Patch JWT Bug,2026-10-23,IN_PROGRESS,TSK-01,Vendor patch v2.1.4 scheduled for Oct 22 night
+TSK-06,DEPT-HR,USR-MID-HR-003,2,Clear 11 Stuck Transition Hospital Claims (INR 14.2L),2026-10-21,IN_PROGRESS,TSK-02,Requires LegacyCare-NovaShield bridge sign-off
+TSK-07,DEPT-ENG,USR-LOW-ENG-005,1,Verify Webhook Sync for Nightly Census Delta,2026-10-22,IN_PROGRESS,TSK-05,Staging tests passing at 99.4%

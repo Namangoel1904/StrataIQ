@@ -1,0 +1,151 @@
+hospital_id,hospital_name,city,specialty_tier,legacycare_status,novashield_2026_status,cashless_desk_phone,direct_admission_sla_mins
+HOSP-001,Sahyadri Super Speciality Hospital,Pune,Tier-1 Multi-Specialty & Ophthalmology,ACTIVE,ACTIVE_PREFERRED,+91-20-67213000,90
+HOSP-002,Ruby Hall Clinic,Pune,Tier-1 Multi-Specialty & Maternity,ACTIVE,ACTIVE_PREFERRED,+91-20-66455100,120
+HOSP-003,Jehangir Hospital,Pune,Tier-1 General & Orthopedics,ACTIVE,ACTIVE,+91-20-66819999,120
+HOSP-004,LifeCare Annex Clinic,Pune,Tier-3 Nursing Home,ACTIVE,BLACKLISTED_BILLING_FRAUD,N/A,0
+HOSP-005,Apollo Hospitals,Mumbai,Tier-1 Quaternary Care,ACTIVE,ACTIVE_PREFERRED,+91-22-33503350,90
+HOSP-006,Fortis Hospital Mulund,Mumbai,Tier-1 Cardiac & Ortho,ACTIVE,ACTIVE_PREFERRED,+91-22-41114111,120
+HOSP-007,Kokilaben Dhirubhai Ambani Hospital,Mumbai,Tier-1 Multi-Specialty,ACTIVE,ACTIVE_PREFERRED,+91-22-42696969,90
+HOSP-008,Apollo Hospitals Bannerghatta,Bengaluru,Tier-1 Multi-Specialty,ACTIVE,ACTIVE_PREFERRED,+91-80-26304050,90
+HOSP-009,Manipal Hospital Old Airport Rd,Bengaluru,Tier-1 Oncology & Surgery,ACTIVE,ACTIVE_PREFERRED,+91-80-25024444,120
+HOSP-010,Apollo Health City Jubilee Hills,Hyderabad,Tier-1 Multi-Specialty,ACTIVE,ACTIVE_PREFERRED,+91-40-23607777,90
+HOSP-011,Max Super Speciality Hospital Saket,Delhi NCR,Tier-1 Multi-Specialty,ACTIVE,ACTIVE_PREFERRED,+91-11-26515050,120
+HOSP-012,Mount Elizabeth Hospital,Singapore,APAC International Partner,REIMBURSEMENT_ONLY,ACTIVE_CASHLESS_APAC,+65-67372666,120
+HOSP-013,Pune Care Medical Center #13,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-014,Mumbai Care Medical Center #14,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-015,Singapore Care Medical Center #15,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-016,Hyderabad Care Medical Center #16,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-017,Mumbai Care Medical Center #17,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-018,Delhi NCR Care Medical Center #18,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-019,Mumbai Care Medical Center #19,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-020,Hyderabad Care Medical Center #20,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-021,Hyderabad Care Medical Center #21,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-022,Delhi NCR Care Medical Center #22,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-023,Pune Care Medical Center #23,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-024,Delhi NCR Care Medical Center #24,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-025,Mumbai Care Medical Center #25,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-026,Hyderabad Care Medical Center #26,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-027,Delhi NCR Care Medical Center #27,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-028,Delhi NCR Care Medical Center #28,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-029,Pune Care Medical Center #29,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-030,Singapore Care Medical Center #30,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-031,Delhi NCR Care Medical Center #31,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-032,Bengaluru Care Medical Center #32,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-033,Mumbai Care Medical Center #33,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-034,Bengaluru Care Medical Center #34,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-035,Singapore Care Medical Center #35,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-036,Pune Care Medical Center #36,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-037,Hyderabad Care Medical Center #37,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-038,Delhi NCR Care Medical Center #38,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-039,Singapore Care Medical Center #39,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-040,Hyderabad Care Medical Center #40,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-041,Hyderabad Care Medical Center #41,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-042,Bengaluru Care Medical Center #42,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-043,Bengaluru Care Medical Center #43,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-044,Delhi NCR Care Medical Center #44,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-045,Bengaluru Care Medical Center #45,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-046,Pune Care Medical Center #46,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-047,Bengaluru Care Medical Center #47,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-048,Pune Care Medical Center #48,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-049,Pune Care Medical Center #49,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-050,Hyderabad Care Medical Center #50,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-051,Delhi NCR Care Medical Center #51,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-052,Bengaluru Care Medical Center #52,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-053,Bengaluru Care Medical Center #53,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-054,Singapore Care Medical Center #54,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-055,Bengaluru Care Medical Center #55,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-056,Pune Care Medical Center #56,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-057,Hyderabad Care Medical Center #57,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-058,Singapore Care Medical Center #58,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-059,Hyderabad Care Medical Center #59,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-060,Pune Care Medical Center #60,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-061,Delhi NCR Care Medical Center #61,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-062,Singapore Care Medical Center #62,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-063,Hyderabad Care Medical Center #63,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-064,Singapore Care Medical Center #64,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-065,Hyderabad Care Medical Center #65,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-066,Bengaluru Care Medical Center #66,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-067,Pune Care Medical Center #67,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-068,Singapore Care Medical Center #68,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-069,Hyderabad Care Medical Center #69,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-070,Bengaluru Care Medical Center #70,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-071,Singapore Care Medical Center #71,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-072,Delhi NCR Care Medical Center #72,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-073,Delhi NCR Care Medical Center #73,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-074,Singapore Care Medical Center #74,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-075,Mumbai Care Medical Center #75,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-076,Mumbai Care Medical Center #76,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-077,Pune Care Medical Center #77,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-078,Mumbai Care Medical Center #78,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-079,Pune Care Medical Center #79,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-080,Hyderabad Care Medical Center #80,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-081,Bengaluru Care Medical Center #81,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-082,Bengaluru Care Medical Center #82,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-083,Delhi NCR Care Medical Center #83,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-084,Hyderabad Care Medical Center #84,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-085,Pune Care Medical Center #85,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-086,Delhi NCR Care Medical Center #86,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-087,Delhi NCR Care Medical Center #87,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-088,Hyderabad Care Medical Center #88,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-089,Singapore Care Medical Center #89,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-090,Mumbai Care Medical Center #90,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-091,Pune Care Medical Center #91,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-092,Delhi NCR Care Medical Center #92,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-093,Pune Care Medical Center #93,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-094,Bengaluru Care Medical Center #94,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-095,Bengaluru Care Medical Center #95,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-096,Delhi NCR Care Medical Center #96,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-097,Bengaluru Care Medical Center #97,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-098,Pune Care Medical Center #98,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-099,Bengaluru Care Medical Center #99,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-100,Mumbai Care Medical Center #100,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-101,Singapore Care Medical Center #101,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-102,Bengaluru Care Medical Center #102,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-103,Bengaluru Care Medical Center #103,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-104,Delhi NCR Care Medical Center #104,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-105,Pune Care Medical Center #105,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-106,Pune Care Medical Center #106,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-107,Pune Care Medical Center #107,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-108,Mumbai Care Medical Center #108,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-109,Pune Care Medical Center #109,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-110,Pune Care Medical Center #110,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-111,Bengaluru Care Medical Center #111,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-112,Hyderabad Care Medical Center #112,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-113,Pune Care Medical Center #113,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-114,Mumbai Care Medical Center #114,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-115,Hyderabad Care Medical Center #115,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-116,Delhi NCR Care Medical Center #116,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-117,Singapore Care Medical Center #117,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-118,Pune Care Medical Center #118,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-119,Bengaluru Care Medical Center #119,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-120,Mumbai Care Medical Center #120,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-121,Hyderabad Care Medical Center #121,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-122,Delhi NCR Care Medical Center #122,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-123,Bengaluru Care Medical Center #123,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-124,Mumbai Care Medical Center #124,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-125,Hyderabad Care Medical Center #125,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-126,Pune Care Medical Center #126,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-127,Pune Care Medical Center #127,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-128,Pune Care Medical Center #128,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-129,Singapore Care Medical Center #129,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-130,Singapore Care Medical Center #130,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-131,Hyderabad Care Medical Center #131,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-132,Pune Care Medical Center #132,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-133,Pune Care Medical Center #133,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-134,Bengaluru Care Medical Center #134,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-135,Singapore Care Medical Center #135,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-136,Delhi NCR Care Medical Center #136,Delhi NCR,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-137,Bengaluru Care Medical Center #137,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-138,Hyderabad Care Medical Center #138,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-139,Pune Care Medical Center #139,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-140,Hyderabad Care Medical Center #140,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-141,Hyderabad Care Medical Center #141,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-142,Pune Care Medical Center #142,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-143,Hyderabad Care Medical Center #143,Hyderabad,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-144,Singapore Care Medical Center #144,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-145,Bengaluru Care Medical Center #145,Bengaluru,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-146,Mumbai Care Medical Center #146,Mumbai,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-147,Pune Care Medical Center #147,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-148,Singapore Care Medical Center #148,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE_PREFERRED,+91-1800-102-9920,120
+HOSP-149,Singapore Care Medical Center #149,Singapore,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120
+HOSP-150,Pune Care Medical Center #150,Pune,Tier-2 General Hospital,ACTIVE,ACTIVE,+91-1800-102-9920,120

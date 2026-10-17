@@ -1,0 +1,596 @@
+{
+  "documents": [
+    {
+      "doc_id": "DOC-001",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-HR",
+      "min_layer_clearance": 1,
+      "file_name": "01_LegacyCare_Expiring_Master_Policy_2025.pdf",
+      "file_type": "PDF",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/01_LegacyCare_Expiring_Master_Policy_2025.pdf",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-002",
+      "uploaded_by": "USR-UPPER-HR-002",
+      "dept_id": "DEPT-LEG",
+      "min_layer_clearance": 2,
+      "file_name": "02_NovaShield_New_Master_Service_Agreement_2026.pdf",
+      "file_type": "PDF",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/02_NovaShield_New_Master_Service_Agreement_2026.pdf",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-003",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-LEG",
+      "min_layer_clearance": 1,
+      "file_name": "03_Old_vs_New_Policy_Benefit_Comparison_Addendum.docx",
+      "file_type": "DOCX",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/03_Old_vs_New_Policy_Benefit_Comparison_Addendum.docx",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-004",
+      "uploaded_by": "USR-MID-IT-004",
+      "dept_id": "DEPT-IT",
+      "min_layer_clearance": 2,
+      "file_name": "04_DPDP_HIPAA_Medical_Data_Privacy_Compliance_Audit.pdf",
+      "file_type": "PDF",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/04_DPDP_HIPAA_Medical_Data_Privacy_Compliance_Audit.pdf",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-005",
+      "uploaded_by": "USR-UPPER-FIN-001",
+      "dept_id": "DEPT-FIN",
+      "min_layer_clearance": 3,
+      "file_name": "05_Q3_Q4_Insurance_Premium_Cost_Impact_Ledger.csv",
+      "file_type": "CSV",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/05_Q3_Q4_Insurance_Premium_Cost_Impact_Ledger.csv",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-006",
+      "uploaded_by": "USR-UPPER-FIN-001",
+      "dept_id": "DEPT-FIN",
+      "min_layer_clearance": 1,
+      "file_name": "06_Employee_Parental_CoPay_Payroll_Deduction_Schedule.csv",
+      "file_type": "CSV",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/06_Employee_Parental_CoPay_Payroll_Deduction_Schedule.csv",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-007",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-HR",
+      "min_layer_clearance": 2,
+      "file_name": "07_Pending_Reimbursement_Claims_Transition_Audit.csv",
+      "file_type": "CSV",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/07_Pending_Reimbursement_Claims_Transition_Audit.csv",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-008",
+      "uploaded_by": "USR-UPPER-FIN-001",
+      "dept_id": "DEPT-FIN",
+      "min_layer_clearance": 3,
+      "file_name": "08_CFO_Budget_Reallocation_Proposal_Parental_Buffer.pdf",
+      "file_type": "PDF",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/08_CFO_Budget_Reallocation_Proposal_Parental_Buffer.pdf",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-009",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-HR",
+      "min_layer_clearance": 2,
+      "file_name": "09_Master_Employee_Dependent_Census_Migration_2026.csv",
+      "file_type": "CSV",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/09_Master_Employee_Dependent_Census_Migration_2026.csv",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-010",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-HR",
+      "min_layer_clearance": 1,
+      "file_name": "10_Cashless_Network_Hospitals_Master_Directory.csv",
+      "file_type": "CSV",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/10_Cashless_Network_Hospitals_Master_Directory.csv",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-011",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-HR",
+      "min_layer_clearance": 1,
+      "file_name": "11_Employee_Handbook_New_Health_Benefit_Guide_2026.pdf",
+      "file_type": "PDF",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/11_Employee_Handbook_New_Health_Benefit_Guide_2026.pdf",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-012",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-HR",
+      "min_layer_clearance": 1,
+      "file_name": "12_Blackout_Period_Emergency_Hospitalization_SOP.docx",
+      "file_type": "DOCX",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/12_Blackout_Period_Emergency_Hospitalization_SOP.docx",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-013",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-HR",
+      "min_layer_clearance": 2,
+      "file_name": "13_HR_Escalation_Log_High_Priority_Medical_Cases.csv",
+      "file_type": "CSV",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/13_HR_Escalation_Log_High_Priority_Medical_Cases.csv",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-014",
+      "uploaded_by": "USR-MID-IT-004",
+      "dept_id": "DEPT-IT",
+      "min_layer_clearance": 1,
+      "file_name": "14_HRMS_to_NovaShield_API_SSO_Architecture_Spec.pdf",
+      "file_type": "PDF",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/14_HRMS_to_NovaShield_API_SSO_Architecture_Spec.pdf",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-015",
+      "uploaded_by": "USR-MID-IT-004",
+      "dept_id": "DEPT-IT",
+      "min_layer_clearance": 2,
+      "file_name": "15_IT_Security_Vulnerability_Test_TPA_Portal.docx",
+      "file_type": "DOCX",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/15_IT_Security_Vulnerability_Test_TPA_Portal.docx",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-016",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-OPS",
+      "min_layer_clearance": 1,
+      "file_name": "16_Cross_Department_60Day_Rollout_Tracker.csv",
+      "file_type": "CSV",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/16_Cross_Department_60Day_Rollout_Tracker.csv",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-017",
+      "uploaded_by": "USR-UPPER-FIN-001",
+      "dept_id": "DEPT-FIN",
+      "min_layer_clearance": 3,
+      "file_name": "17_Transcript_Executive_Committee_Vendor_Switch_Signoff.docx",
+      "file_type": "DOCX",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/17_Transcript_Executive_Committee_Vendor_Switch_Signoff.docx",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-018",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-HR",
+      "min_layer_clearance": 2,
+      "file_name": "18_Transcript_HR_IT_Finance_Weekly_Migration_WarRoom.docx",
+      "file_type": "DOCX",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/18_Transcript_HR_IT_Finance_Weekly_Migration_WarRoom.docx",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-019",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-HR",
+      "min_layer_clearance": 1,
+      "file_name": "19_Transcript_All_Hands_TownHall_Employee_QA_Session.docx",
+      "file_type": "DOCX",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/19_Transcript_All_Hands_TownHall_Employee_QA_Session.docx",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-020",
+      "uploaded_by": "USR-LOW-OPS-006",
+      "dept_id": "DEPT-OPS",
+      "min_layer_clearance": 2,
+      "file_name": "20_Department_Delivery_Impact_Report_Q4.pdf",
+      "file_type": "PDF",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/20_Department_Delivery_Impact_Report_Q4.pdf",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-021",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-HR",
+      "min_layer_clearance": 1,
+      "file_name": "21_Excluded_Treatments_And_SubLimits_Schedule.pdf",
+      "file_type": "PDF",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/21_Excluded_Treatments_And_SubLimits_Schedule.pdf",
+      "version": "v2.4-2026"
+    },
+    {
+      "doc_id": "DOC-022",
+      "uploaded_by": "USR-MID-HR-003",
+      "dept_id": "DEPT-LEG",
+      "min_layer_clearance": 1,
+      "file_name": "22_TPA_SLA_Breach_And_Grievance_Redressal_Matrix.pdf",
+      "file_type": "PDF",
+      "gcs_uri": "gs://kpipulse-enterprise-vault-2026/22_TPA_SLA_Breach_And_Grievance_Redressal_Matrix.pdf",
+      "version": "v2.4-2026"
+    }
+  ],
+  "chunks": [
+    {
+      "chunk_id": "CHK-11EDA477C8",
+      "doc_id": "DOC-001",
+      "page_number": 1,
+      "section_title": "Section 1: Policy Coverage & Expiry Notice",
+      "chunk_text": "Section 1: Policy Coverage & Expiry Notice: Policy Number LC-GMC-2025-8841 underwritten by LegacyCare Assurance Ltd. expires at 23:59 IST on October 20, 2026. Total covered lives: 500 employees + 920 dependents. Annual base premium: INR 1,85,00,000."
+    },
+    {
+      "chunk_id": "CHK-4B1602D6AD",
+      "doc_id": "DOC-001",
+      "page_number": 1,
+      "section_title": "Section 4: Room Rent & ICU Sub-Limits (Legacy Terms)",
+      "chunk_text": "Section 4: Room Rent & ICU Sub-Limits (Legacy Terms): Under LegacyCare 2025 terms, normal hospital room rent is strictly capped at 1% of Base Sum Insured per day (INR 5,000/day for a INR 5,00,000 policy). ICU charges are capped at 2% of Sum Insured per day. Proportionate deduction applies if the insured selects a higher room category."
+    },
+    {
+      "chunk_id": "CHK-8469BA7547",
+      "doc_id": "DOC-001",
+      "page_number": 1,
+      "section_title": "Section 8: Disease-Wise Sub-Limits & Cataract Cap",
+      "chunk_text": "Section 8: Disease-Wise Sub-Limits & Cataract Cap: 8.1 Maternity Benefit: Normal delivery capped at INR 50,000; C-Section capped at INR 65,000.\n8.3 Cataract Surgery Limit: Strictly capped at INR 35,000 per eye inclusive of monofocal lens and surgeon fees.\n8.4 Parental Coverage: Co-pay of 20% mandatory on all parental claims at non-preferred hospitals."
+    },
+    {
+      "chunk_id": "CHK-F14ACE8BE6",
+      "doc_id": "DOC-001",
+      "page_number": 2,
+      "section_title": "Section 12: Mid-Term Termination & Pro-Rata Refund Clause",
+      "chunk_text": "Section 12: Mid-Term Termination & Pro-Rata Refund Clause: Upon policy transition and early closure of the OPD corporate buffer pool, LegacyCare shall issue a pro-rata unutilized buffer credit of INR 19,20,000 within 15 business days of final claim reconciliation."
+    },
+    {
+      "chunk_id": "CHK-DE995C4406",
+      "doc_id": "DOC-002",
+      "page_number": 1,
+      "section_title": "Section 1: Master Policy Activation & Premium",
+      "chunk_text": "Section 1: Master Policy Activation & Premium: Policy Number NS-CORP-2026-9920 becomes effective October 21, 2026 at 00:00 IST. Total Annual Premium including enhanced parental rider stands at INR 2,23,40,000 (an increase of INR 38,40,000 driven by a 14% actuarial revision on parental dependency riders)."
+    },
+    {
+      "chunk_id": "CHK-A6836C2588",
+      "doc_id": "DOC-002",
+      "page_number": 2,
+      "section_title": "Section 4.2: Zero Overtime & Portal Maintenance Clause",
+      "chunk_text": "Section 4.2: Zero Overtime & Portal Maintenance Clause: NovaShield TPA and technical integration teams shall provide 24x7 API and SAML 2.0 SSO maintenance at no additional cost. Weekend maintenance and migration support are included in the base administrative fee; overtime billing is strictly prohibited."
+    },
+    {
+      "chunk_id": "CHK-E69C9025D1",
+      "doc_id": "DOC-002",
+      "page_number": 2,
+      "section_title": "Section 6: Enhanced Room Rent & Cashless Turnaround SLA",
+      "chunk_text": "Section 6: Enhanced Room Rent & Cashless Turnaround SLA: 6.1 Room Rent Upgrade: Capped at Single Private AC Room (no 1% monetary ceiling for L1-L4 employees).\n6.2 Cashless Pre-Authorization SLA: Guaranteed approval within 120 minutes (2 hours) for planned and emergency admissions. SLA breaches beyond 180 minutes incur a penalty credit of INR 15,000 per incident."
+    },
+    {
+      "chunk_id": "CHK-E1F5607290",
+      "doc_id": "DOC-002",
+      "page_number": 3,
+      "section_title": "Section 8.3: Upgraded Cataract, Maternity & Robotic Surgery Limits",
+      "chunk_text": "Section 8.3: Upgraded Cataract, Maternity & Robotic Surgery Limits: 8.1 Maternity Benefit: Upgraded to INR 1,00,000 for both normal and C-section deliveries with zero waiting period.\n8.3 Cataract Surgery Limit: Upgraded to INR 45,000 per eye (INR 10,000 higher than the outgoing 2025 policy), covering multifocal and toric intraocular lenses at all network hospitals including Sahyadri Hospital Pune and Apollo Hospitals.\n8.5 Parental Rider Co-Pay: Reduced from 20% to 10% across all Tier-1 network hospitals."
+    },
+    {
+      "chunk_id": "CHK-D1787D2B2E",
+      "doc_id": "DOC-003",
+      "page_number": 1,
+      "section_title": "1. Core Coverage Upgrades",
+      "chunk_text": "1. Core Coverage Upgrades: Base Sum Insured remains INR 5,00,000 for L1-L3, INR 7,50,000 for L4-L5, and INR 10,00,000 for L6 executives. Employees may voluntarily top-up an additional INR 5,00,000 by October 22, 2026."
+    },
+    {
+      "chunk_id": "CHK-088B38D2BB",
+      "doc_id": "DOC-003",
+      "page_number": 2,
+      "section_title": "2. Side-by-Side Benefit Comparison",
+      "chunk_text": "2. Side-by-Side Benefit Comparison: - Cataract Surgery: Increased from INR 35,000/eye (LegacyCare) to INR 45,000/eye (NovaShield).\n- Maternity Limit: Increased from INR 50,000 to INR 1,00,000.\n- Parental Co-pay: Reduced from 20% to 10%.\n- Pre-Existing Diseases (PED): 100% waived from Day 1 for both employees and enrolled parents provided parental opt-in is confirmed before the cutoff window."
+    },
+    {
+      "chunk_id": "CHK-1C1E75E59B",
+      "doc_id": "DOC-003",
+      "page_number": 3,
+      "section_title": "3. Critical Transition Warning (Parental Rider Re-Confirmation)",
+      "chunk_text": "3. Critical Transition Warning (Parental Rider Re-Confirmation): Under Clause 9.4 of the NovaShield transition addendum, existing parental enrollments do NOT auto-renew without employee consent due to revised co-pay payroll structures. Every employee with enrolled parents must click 'Confirm Parental Rider' in the portal before the cutoff date."
+    },
+    {
+      "chunk_id": "CHK-3CB34B175E",
+      "doc_id": "DOC-004",
+      "page_number": 1,
+      "section_title": "1. Executive Compliance Summary",
+      "chunk_text": "1. Executive Compliance Summary: Audit conducted by IT Security & Legal on the data migration pipeline from LegacyCare to NovaShield Health. Employee medical history, diagnosis codes (ICD-10), and dependent Aadhaar/DOB details classify as Sensitive Personal Data under India's DPDP Act and HIPAA standards."
+    },
+    {
+      "chunk_id": "CHK-8E438310C0",
+      "doc_id": "DOC-004",
+      "page_number": 1,
+      "section_title": "2. Mandatory Zero-Trust & Row-Level Security Controls",
+      "chunk_text": "2. Mandatory Zero-Trust & Row-Level Security Controls: 1. Raw dependent medical claim reasons must never be exposed to Department Managers outside HR Benefits.\n2. AI assistants querying company databases must enforce PostgreSQL Row-Level Security (RLS) so Lower-layer employees can only query their own `user_id` enrollment records.\n3. Nightly census sync CSVs must mask Aadhaar digits (XXXX-XXXX-1234) prior to SFTP/API transmission."
+    },
+    {
+      "chunk_id": "CHK-D83474738A",
+      "doc_id": "DOC-005",
+      "page_number": 1,
+      "section_title": "Q3-Q4 Insurance Cost Variance Summary",
+      "chunk_text": "Total 2025 LegacyCare Premium: INR 1,85,00,000. Total 2026 NovaShield Premium: INR 2,23,40,000. Gross Parental Rider Variance: INR 38,40,000 (INR 38.4 Lakhs). Unutilized LegacyCare Pro-Rata Refund available: INR 19,20,000 (INR 19.2 Lakhs). Net unfunded budget gap if split 50/50: INR 19,20,000."
+    },
+    {
+      "chunk_id": "CHK-253DBE9A3D",
+      "doc_id": "DOC-006",
+      "page_number": 1,
+      "section_title": "Parental Co-Pay & Top-Up Payroll Schedule",
+      "chunk_text": "For Grade L1-L3 employees (Base Sum Insured INR 5,00,000), current parental monthly salary deduction is INR 600 per parent (INR 1,200/month for 2 parents). Under full hike pass-through (Option C), it rises to INR 920/parent (INR 1,840/month). Under Executive Option B (Hybrid), monthly deduction stays INR 600/parent. Optional INR 5,00,000 Sum Insured upgrade costs INR 450/month deducted from October payslip."
+    },
+    {
+      "chunk_id": "CHK-C538D0D9AD",
+      "doc_id": "DOC-007",
+      "page_number": 1,
+      "section_title": "In-Flight Transition Claims Audit",
+      "chunk_text": "There are 11 active high-priority hospital claims (plus 1 pre-auth draft for USR-LOW-ENG-005 Naman Goel at Sahyadri Hospital Pune for INR 45,000 cataract surgery) totaling INR 14,20,000 (INR 14.2 Lakhs) caught between the LegacyCare Oct 20 cutoff and NovaShield Oct 21 activation."
+    },
+    {
+      "chunk_id": "CHK-DF2D0E863A",
+      "doc_id": "DOC-008",
+      "page_number": 1,
+      "section_title": "1. Executive Problem Statement",
+      "chunk_text": "1. Executive Problem Statement: Switching from LegacyCare to NovaShield Health introduces an annual premium increase of INR 38,40,000 (14% hike on parental coverage). Simultaneously, Finance scheduled the October payroll deduction lock for October 20, while IT's SAML SSO portal goes live on October 23, creating a 3-day gap where 142 employees cannot confirm their parental riders."
+    },
+    {
+      "chunk_id": "CHK-B2EB41E79A",
+      "doc_id": "DOC-008",
+      "page_number": 1,
+      "section_title": "2. Quantified Decision Matrix (3 Options for CFO/CEO Approval)",
+      "chunk_text": "2. Quantified Decision Matrix (3 Options for CFO/CEO Approval): OPTION A (100% Company Absorption): Company absorbs all INR 38.4 Lakhs from Q4 operating margin. Zero increase to employee deductions. Direct EBITDA impact: -INR 19.2 Lakhs after applying the INR 19.2L LegacyCare refund.\n\nOPTION B (Recommended Hybrid Buffer + 5-Day Grace Window): Apply the INR 19,20,000 LegacyCare pro-rata refund to cover 50% of the hike, fund the remaining INR 19,20,000 from the unallocated Q4 Staff Welfare Reserve (CC-102), freeze employee monthly parental co-pay at INR 600/parent for FY26-27, and instruct Finance & NovaShield to extend the payroll/portal opt-in cutoff to October 25, 2026.\n\nOPTION C (100% Employee Pass-Through): Pass the entire INR 38.4L hike to employees (increasing deduction from INR 600 to INR 920/parent). High attrition risk flagged in Engineering and Operations."
+    },
+    {
+      "chunk_id": "CHK-DB9F46A1DC",
+      "doc_id": "DOC-009",
+      "page_number": 1,
+      "section_title": "Master Census Migration Status",
+      "chunk_text": "Out of 500 employees, 358 are fully migrated to POL-NOVASHIELD-2026, while exactly 142 employees (including USR-LOW-ENG-005 Naman Goel) have status PENDING_CONFIRMATION for parental riders due to the SSO portal rollout gap."
+    },
+    {
+      "chunk_id": "CHK-F34600C5D5",
+      "doc_id": "DOC-010",
+      "page_number": 1,
+      "section_title": "Verified Cashless Hospital Network Directory (2026)",
+      "chunk_text": "Sahyadri Super Speciality Hospital (Pune) and Ruby Hall Clinic (Pune) are ACTIVE_PREFERRED on the NovaShield 2026 cashless network with 90-120 min pre-auth SLA. Apollo Hospitals (Mumbai, Bengaluru, Hyderabad), Fortis, Manipal, Max Delhi, and Mount Elizabeth Hospital (Singapore) are ACTIVE_PREFERRED. Note: LifeCare Annex Clinic (Pune) was BLACKLISTED due to billing irregularities."
+    },
+    {
+      "chunk_id": "CHK-D988C425EC",
+      "doc_id": "DOC-011",
+      "page_number": 1,
+      "section_title": "Section 1: Welcome to NovaShield Health (Effective Oct 21, 2026)",
+      "chunk_text": "Section 1: Welcome to NovaShield Health (Effective Oct 21, 2026): Starting October 21, 2026, our corporate group health insurance transitions from LegacyCare Assurance to NovaShield Health (Policy #NS-CORP-2026-9920). Your coverage continues seamlessly with zero waiting periods for pre-existing diseases."
+    },
+    {
+      "chunk_id": "CHK-6E850ACBB9",
+      "doc_id": "DOC-011",
+      "page_number": 1,
+      "section_title": "Section 4: Step-by-Step Cashless Hospitalization Process",
+      "chunk_text": "Section 4: Step-by-Step Cashless Hospitalization Process: 1. Visit any active NovaShield Cashless Network Hospital (such as Sahyadri Hospital or Ruby Hall Clinic in Pune, or Apollo Hospitals).\n2. Present your digital NovaShield E-Card at the hospital TPA desk at least 48 hours prior for planned surgeries (like cataract or maternity) or within 24 hours for emergency admission.\n3. NovaShield guarantees cashless pre-authorization within 120 minutes."
+    },
+    {
+      "chunk_id": "CHK-04195F475A",
+      "doc_id": "DOC-011",
+      "page_number": 2,
+      "section_title": "Section 8.3: Quick Reference Benefit Table (2026 Upgrades)",
+      "chunk_text": "Section 8.3: Quick Reference Benefit Table (2026 Upgrades): - Base Sum Insured: INR 5,00,000 (Grades L1-L3), upgradeable to INR 10,00,000 for INR 450/month.\n- Cataract Surgery Limit: Covered up to INR 45,000 per eye (increased by INR 10,000 over last year's INR 35,000 limit). Multifocal lenses included.\n- Maternity Coverage: INR 1,00,000 for normal or C-section delivery.\n- Annual Executive Health Checkup: Free cashless checkup for employee + spouse once per policy year.\n- Action Required: If you have parents enrolled, you must click 'Confirm Parental Rider' in your portal by October 22, 2026."
+    },
+    {
+      "chunk_id": "CHK-FF1A2AA444",
+      "doc_id": "DOC-012",
+      "page_number": 1,
+      "section_title": "1. Cutover Blackout Window Definition",
+      "chunk_text": "1. Cutover Blackout Window Definition: While policy coverage has zero gap between October 20 (23:59 IST) and October 21 (00:00 IST), the automated E-Card generation portal will undergo scheduled migration maintenance for 14 hours."
+    },
+    {
+      "chunk_id": "CHK-9E3CEB8D55",
+      "doc_id": "DOC-012",
+      "page_number": 2,
+      "section_title": "2. Emergency Admission Protocol (Green Channel)",
+      "chunk_text": "2. Emergency Admission Protocol (Green Channel): If an employee or dependent is hospitalized during the migration window, show Corporate Policy Code 'NS-CORP-2026-9920' at the hospital desk and trigger an immediate Green Channel Provisional Approval via HR Escalation Lead Priya Kulkarni (+91-98200-11223). Hospital deposits are waived under our corporate guarantee."
+    },
+    {
+      "chunk_id": "CHK-62ABD4FF48",
+      "doc_id": "DOC-013",
+      "page_number": 1,
+      "section_title": "Active P0/P1 Medical Escalations",
+      "chunk_text": "HR Lead Priya Kulkarni (USR-MID-HR-003) is tracking 3 critical escalations (ESC-101 Maternity at Ruby Hall Pune, ESC-102 Cardiac at Apollo Bengaluru, ESC-103 Chemo at Manipal) that require split-billing NOC between LegacyCare and NovaShield."
+    },
+    {
+      "chunk_id": "CHK-61A54EBEDB",
+      "doc_id": "DOC-014",
+      "page_number": 1,
+      "section_title": "1. SAML 2.0 Single Sign-On Flow",
+      "chunk_text": "1. SAML 2.0 Single Sign-On Flow: Employees authenticate via corporate Google Workspace IdP. SAML assertions pass `user_id`, `grade_tier`, and `dept_id` to NovaShield's benefit portal endpoint (`https://sso.novashieldhealth.com/saml2/acs`)."
+    },
+    {
+      "chunk_id": "CHK-78DB4BE75E",
+      "doc_id": "DOC-014",
+      "page_number": 1,
+      "section_title": "2. Deployment Timeline & Current Blocker",
+      "chunk_text": "2. Deployment Timeline & Current Blocker: Scheduled production deployment of the SAML 2.0 SSO enrollment widget is pushed to October 23, 2026 at 16:00 IST because NovaShield's sandbox OAuth2 refresh token throws an `ERR_TOKEN_TTL_MISMATCH` after 300 seconds. Until October 23, employees cannot use self-service SSO on the vendor's external portal."
+    },
+    {
+      "chunk_id": "CHK-D39D5011D0",
+      "doc_id": "DOC-015",
+      "page_number": 1,
+      "section_title": "1. API Token Expiry Bug (Severity: High)",
+      "chunk_text": "1. API Token Expiry Bug (Severity: High): During load testing of 500 concurrent employee logins, the NovaShield mobile callback API dropped session state due to a 5-minute JWT clock skew. Vendor patch v2.1.4 arrives October 22; IT QA sign-off and production go-live will complete on October 23, 2026."
+    },
+    {
+      "chunk_id": "CHK-81F3193720",
+      "doc_id": "DOC-015",
+      "page_number": 2,
+      "section_title": "2. Mitigation via Internal Enterprise Copilot",
+      "chunk_text": "2. Mitigation via Internal Enterprise Copilot: While the external TPA SSO portal is delayed until October 23, employees CAN immediately confirm their parental rider and query their policy directly inside our internal Cloud Run Enterprise Workspace, which writes directly to our Cloud SQL database."
+    },
+    {
+      "chunk_id": "CHK-5235873D5D",
+      "doc_id": "DOC-016",
+      "page_number": 1,
+      "section_title": "Cross-Department Rollout Schedule & Conflict Alert",
+      "chunk_text": "CRITICAL SCHEDULE CONFLICT: Task TSK-03 (Finance October Payroll Co-Pay Lock) has due_date 2026-10-20, which depends on TSK-05 (IT SAML SSO Portal Deployment) that does not finish until 2026-10-23. This 3-day mismatch blocks TSK-04 (142 employees with pending parental rider confirmations)."
+    },
+    {
+      "chunk_id": "CHK-33A5A918F2",
+      "doc_id": "DOC-017",
+      "page_number": 1,
+      "section_title": "00:04:12 - CHRO Kavita Nair on Employee Morale",
+      "chunk_text": "00:04:12 - CHRO Kavita Nair on Employee Morale: Kavita Nair (CHRO): 'We switched to NovaShield because LegacyCare delayed 19 cashless claims last quarter. NovaShield gives us a 2-hour cashless SLA, INR 45,000 per eye for cataract, and INR 1 Lakh maternity. If we pass the 14% parental premium hike (INR 38.4 Lakhs) onto employees right before Diwali, we will face severe pushback from Engineering.'"
+    },
+    {
+      "chunk_id": "CHK-C652B14F5D",
+      "doc_id": "DOC-017",
+      "page_number": 2,
+      "section_title": "00:11:45 - CFO Arvind Mehta on Budget Options",
+      "chunk_text": "00:11:45 - CFO Arvind Mehta on Budget Options: Arvind Mehta (CFO): 'I agree we shouldn't shock employee payslips. LegacyCare owes us an INR 19.2 Lakh pro-rata refund on the old OPD buffer. If we apply that INR 19.2L refund and match the remaining INR 19.2L from our Q4 Staff Welfare Reserve (Option B), we can keep employee parental deductions completely flat at INR 600 per parent. Let's load the final numbers into the Decision Matrix for formal sign-off.'"
+    },
+    {
+      "chunk_id": "CHK-B1CD99D296",
+      "doc_id": "DOC-018",
+      "page_number": 1,
+      "section_title": "00:02:10 - IT Portal Delay Disclosure",
+      "chunk_text": "00:02:10 - IT Portal Delay Disclosure: Rohan Deshmukh (IT Manager): 'Team, heads up\u2014our security test found a JWT token expiry bug in NovaShield's external SSO portal. Their engineering team is patching it, so external SSO self-service won't go live until October 23.'"
+    },
+    {
+      "chunk_id": "CHK-FF8CA5BE8D",
+      "doc_id": "DOC-018",
+      "page_number": 2,
+      "section_title": "00:05:30 - Payroll Cutoff Collision",
+      "chunk_text": "00:05:30 - Payroll Cutoff Collision: Payroll Controller (Finance): 'Wait, October 23? Our payroll system locks October salary deductions on October 20! If 142 employees haven't confirmed their parental rider by October 20, the system will either drop their parents or charge the wrong default rate.'"
+    },
+    {
+      "chunk_id": "CHK-719660E660",
+      "doc_id": "DOC-018",
+      "page_number": 3,
+      "section_title": "00:08:15 - HR Escalation Summary",
+      "chunk_text": "00:08:15 - HR Escalation Summary: Priya Kulkarni (HR Lead): 'We cannot drop 142 families! Plus I have 11 active hospital claims worth INR 14.2 Lakhs stuck in the transition window right now. We need the CFO to approve extending the payroll lock to October 25 and allowing employees to confirm directly through our internal AI workspace.'"
+    },
+    {
+      "chunk_id": "CHK-DF170F0D1A",
+      "doc_id": "DOC-019",
+      "page_number": 1,
+      "section_title": "Q1: Pune Hospital Network & Parental Cataract Coverage",
+      "chunk_text": "Q1: Pune Hospital Network & Parental Cataract Coverage: Employee Question (Engineering, Pune): 'Are Sahyadri Hospital and Ruby Hall Clinic still in the cashless network, and what is the cataract limit for parents?'\nHR Answer: 'Yes! Both Sahyadri Hospital and Ruby Hall Clinic in Pune are preferred cashless partners under NovaShield. Even better, cataract coverage has increased from INR 35,000 to INR 45,000 per eye, and parental co-pay is cut in half from 20% to 10%. Just make sure you re-confirm your parental rider in the portal!'"
+    },
+    {
+      "chunk_id": "CHK-0DC7E640CF",
+      "doc_id": "DOC-019",
+      "page_number": 2,
+      "section_title": "Q2: Upgrading Sum Insured from INR 5 Lakhs to INR 10 Lakhs",
+      "chunk_text": "Q2: Upgrading Sum Insured from INR 5 Lakhs to INR 10 Lakhs: Employee Question (Operations): 'How much gets deducted from my monthly salary if I upgrade my base sum insured from INR 5L to INR 10L?'\nHR Answer: 'The voluntary INR 5 Lakh top-up costs a flat INR 450 per month deducted from your payslip.'"
+    },
+    {
+      "chunk_id": "CHK-EFB81AA37A",
+      "doc_id": "DOC-020",
+      "page_number": 1,
+      "section_title": "1. Quantified Productivity Drain Across 500 Employees",
+      "chunk_text": "1. Quantified Productivity Drain Across 500 Employees: During the first 10 days of the health insurance transition, employees across Engineering, Operations, and Finance spent an average of 3.4 hours per person reading 40-page policy PDFs, searching hospital lists, and messaging HR on Slack. Total lost engineering and delivery time: 1,700 person-hours in October alone."
+    },
+    {
+      "chunk_id": "CHK-98301C9500",
+      "doc_id": "DOC-020",
+      "page_number": 1,
+      "section_title": "2. Impact of Deploying Role-Adaptive AI Workspace",
+      "chunk_text": "2. Impact of Deploying Role-Adaptive AI Workspace: By deploying the Role-Adaptive Enterprise Copilot with Pointed Voice-to-Doc Q&A and automated cross-silo conflict detection, employee query resolution drops from 45 minutes to 12 seconds, recovering 94% of lost productivity."
+    },
+    {
+      "chunk_id": "CHK-876517D1D9",
+      "doc_id": "DOC-021",
+      "page_number": 1,
+      "section_title": "Section 1: Covered Sub-Limits Schedule",
+      "chunk_text": "Section 1: Covered Sub-Limits Schedule: 1. Cataract Surgery: INR 45,000 per eye (up to INR 90,000 bilateral).\n2. Maternity: INR 1,00,000 (Normal or Caesarean).\n3. Lasik / Refractive Eye Surgery: Covered up to INR 30,000 per eye if refractive error exceeds +/- 6.0 diopters.\n4. Robotic & Modern Treatments: Covered up to 50% of Sum Insured.\n5. OPD & Dental Wallet: INR 10,000 per family per year."
+    },
+    {
+      "chunk_id": "CHK-55D97EAABF",
+      "doc_id": "DOC-021",
+      "page_number": 1,
+      "section_title": "Section 2: Standard Exclusions",
+      "chunk_text": "Section 2: Standard Exclusions: Cosmetic plastic surgery, non-prescribed dietary supplements, and experimental stem-cell procedures remain excluded unless reconstructing post-accident trauma."
+    },
+    {
+      "chunk_id": "CHK-A716B05251",
+      "doc_id": "DOC-022",
+      "page_number": 1,
+      "section_title": "1. Three-Tier Grievance Escalation Contacts",
+      "chunk_text": "1. Three-Tier Grievance Escalation Contacts: - Level 1 (Cashless Pre-Auth Desk - 0 to 120 mins): priority-corp@novashieldhealth.com | +91-1800-102-9920\n- Level 2 (Dedicated Account Nodal Officer - >120 mins): Viktor Sen, VP Corporate Claims | vikram.sen@novashieldhealth.com\n- Level 3 (Internal HR Benefits Lead): Priya Kulkarni | priya.kulkarni@kpipulse.com"
+    },
+    {
+      "chunk_id": "CHK-42967E7C2F",
+      "doc_id": "DOC-022",
+      "page_number": 1,
+      "section_title": "2. Penalty Enforcement Clause",
+      "chunk_text": "2. Penalty Enforcement Clause: If any cashless pre-authorization for an active employee or dependent exceeds 180 minutes without medical query justification, NovaShield credits INR 15,000 to the corporate buffer ledger automatically."
+    }
+  ],
+  "showcase_users": [
+    {
+      "user_id": "USR-UPPER-FIN-001",
+      "dept_id": "DEPT-FIN",
+      "layer_id": 3,
+      "email": "arvind.mehta@kpipulse.com",
+      "full_name": "Arvind Mehta",
+      "job_title": "Chief Financial Officer (CFO)",
+      "grade_tier": "L6",
+      "ui_preferences_json": "{\"default_view\": \"financial_decision_matrix\", \"show_sql_tables\": true, \"voice_speed\": 1.0}"
+    },
+    {
+      "user_id": "USR-UPPER-HR-002",
+      "dept_id": "DEPT-HR",
+      "layer_id": 3,
+      "email": "kavita.nair@kpipulse.com",
+      "full_name": "Kavita Nair",
+      "job_title": "Chief Human Resources Officer (CHRO)",
+      "grade_tier": "L6",
+      "ui_preferences_json": "{\"default_view\": \"executive_policy_summary\", \"show_sql_tables\": false, \"voice_speed\": 1.0}"
+    },
+    {
+      "user_id": "USR-MID-HR-003",
+      "dept_id": "DEPT-HR",
+      "layer_id": 2,
+      "email": "priya.kulkarni@kpipulse.com",
+      "full_name": "Priya Kulkarni",
+      "job_title": "HR Operations & Benefits Lead",
+      "grade_tier": "L4",
+      "ui_preferences_json": "{\"default_view\": \"migration_escalation_warroom\", \"show_sql_tables\": true, \"voice_speed\": 1.05}"
+    },
+    {
+      "user_id": "USR-MID-IT-004",
+      "dept_id": "DEPT-IT",
+      "layer_id": 2,
+      "email": "rohan.deshmukh@kpipulse.com",
+      "full_name": "Rohan Deshmukh",
+      "job_title": "IT Security & IAM Manager",
+      "grade_tier": "L4",
+      "ui_preferences_json": "{\"default_view\": \"sso_api_integration_tracker\", \"show_sql_tables\": true, \"voice_speed\": 1.0}"
+    },
+    {
+      "user_id": "USR-LOW-ENG-005",
+      "dept_id": "DEPT-ENG",
+      "layer_id": 1,
+      "email": "naman.goel@kpipulse.com",
+      "full_name": "Naman Goel",
+      "job_title": "Senior Data & Full-Stack Engineer",
+      "grade_tier": "L3",
+      "ui_preferences_json": "{\"default_view\": \"personal_benefits_and_voice_doc\", \"show_sql_tables\": true, \"voice_speed\": 1.0}"
+    },
+    {
+      "user_id": "USR-LOW-OPS-006",
+      "dept_id": "DEPT-OPS",
+      "layer_id": 1,
+      "email": "sneha.patil@kpipulse.com",
+      "full_name": "Sneha Patil",
+      "job_title": "Operations Delivery Analyst",
+      "grade_tier": "L2",
+      "ui_preferences_json": "{\"default_view\": \"personal_benefits_and_voice_doc\", \"show_sql_tables\": false, \"voice_speed\": 1.0}"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+# StrataIQ Backend Application Package

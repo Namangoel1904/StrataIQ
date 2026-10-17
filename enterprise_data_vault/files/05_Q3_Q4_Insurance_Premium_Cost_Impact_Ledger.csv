@@ -1,0 +1,8 @@
+dept_id,department_name,headcount,legacy_2025_premium_inr,novashield_2026_premium_inr,parental_rider_variance_inr,legacy_pro_rata_refund_inr,net_budget_gap_inr
+DEPT-ENG,Engineering,210,7770000,9382800,1612800,806400,806400
+DEPT-OPS,Operations & Delivery,130,4810000,5808400,998400,499200,499200
+DEPT-FIN,Finance,45,1665000,2010600,345600,172800,172800
+DEPT-HR,Human Resources,40,1480000,1787200,307200,153600,153600
+DEPT-IT,IT & InfoSec,45,1665000,2010600,345600,172800,172800
+DEPT-LEG,Legal & Compliance,30,1110000,1340400,230400,115200,115200
+TOTAL,All Departments,500,18500000,22340000,3840000,1920000,1920000

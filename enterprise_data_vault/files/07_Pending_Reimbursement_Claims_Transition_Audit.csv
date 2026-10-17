@@ -1,0 +1,13 @@
+claim_id,user_id,employee_name,department,hospital_name,city,treatment_type,claim_amount_inr,claim_stage,blocker_reason
+CLM-2026-901,USR-LOW-ENG-005,Naman Goel,Engineering,Sahyadri Hospital,Pune,Parental Cataract Pre-Auth Inquiry,45000,PRE_AUTH_DRAFT,Awaiting Parental Rider Re-confirmation before Oct 22
+CLM-2026-902,USR-LOW-OPS-006,Sneha Patil,Operations & Delivery,Ruby Hall Clinic,Pune,Maternity Admission,95000,STUCK_IN_TRANSITION,Admitted Oct 19 under LegacyCare; discharge Oct 22 falls in NovaShield window
+CLM-2026-903,USR-0014,Vivaan Sharma,Engineering,Apollo Hospital,Bengaluru,Cardiac Angioplasty,285000,STUCK_IN_TRANSITION,LegacyCare TPA froze cashless approval 48h prior to policy expiry
+CLM-2026-904,USR-0029,Ananya Joshi,Finance,Fortis Hospital,Mumbai,Orthopedic ACL Repair,165000,STUCK_IN_TRANSITION,Split billing required between LegacyCare and NovaShield TPA
+CLM-2026-905,USR-0042,Siddharth Iyer,IT & InfoSec,Manipal Hospital,Bengaluru,Chemotherapy Daycare Cycle 4,110000,STUCK_IN_TRANSITION,Pre-existing continuity certificate pending from LegacyCare
+CLM-2026-906,USR-0088,Meera Kulkarni,Engineering,Sahyadri Hospital,Pune,Gallbladder Laparoscopy,125000,STUCK_IN_TRANSITION,TPA portal blackout window Oct 20-21
+CLM-2026-907,USR-0104,Rahul Verma,Operations & Delivery,Apollo Hospital,Hyderabad,Dialysis Package,78000,STUCK_IN_TRANSITION,Awaiting new NovaShield E-Card generation
+CLM-2026-908,USR-0119,Diya Patel,Human Resources,Kokilaben Hospital,Mumbai,Maternity C-Section,98000,STUCK_IN_TRANSITION,Transition overlap admission
+CLM-2026-909,USR-0155,Karan Malhotra,Engineering,Max Super Speciality,Delhi NCR,Appendectomy Emergency,142000,STUCK_IN_TRANSITION,Cashless desk awaiting NovaShield policy activation code
+CLM-2026-910,USR-0201,Pooja Reddy,Finance,Mount Elizabeth Hospital,Singapore,Diagnostic MRI & Specialist,155000,STUCK_IN_TRANSITION,APAC cross-border reimbursement currency conversion hold
+CLM-2026-911,USR-0244,Vikram Kapoor,Legal & Compliance,Ruby Hall Clinic,Pune,Parental Bilateral Cataract,82000,STUCK_IN_TRANSITION,Pending LegacyCare NOC
+CLM-2026-912,USR-0310,Tanvi Bansal,Engineering,Apollo Hospital,Mumbai,Renal Calculus Laser,85000,STUCK_IN_TRANSITION,Discharge summary pending TPA verification

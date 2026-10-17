@@ -1,0 +1,4 @@
+escalation_id,claim_id,user_id,assigned_hr_id,priority_level,hospital_name,issue_summary,sla_deadline,resolution_status
+ESC-101,CLM-2026-902,USR-LOW-OPS-006,USR-MID-HR-003,P0_CRITICAL,"Ruby Hall Clinic, Pune",Maternity admission spans Oct 19-22 vendor cutover,2026-10-20 18:00,OPEN_NEEDS_TPA_BRIDGE
+ESC-102,CLM-2026-903,USR-0014,USR-MID-HR-003,P0_CRITICAL,"Apollo Hospital, Bengaluru","Cardiac stent cashless hold of INR 2,85,000",2026-10-20 14:00,OPEN_NEEDS_CFO_GUARANTEE
+ESC-103,CLM-2026-905,USR-0042,USR-MID-HR-003,P1_HIGH,"Manipal Hospital, Bengaluru",Daycare chemotherapy continuity waiver,2026-10-21 10:00,IN_PROGRESS

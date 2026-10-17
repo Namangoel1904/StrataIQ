@@ -1,0 +1,19 @@
+{
+  "status": "trained",
+  "target_model": "google/gemma-4-e4b-it",
+  "compute_backend": "thinkingmachines/Inkling-Small",
+  "tinker_checkpoint_path": "tinker://e8541eb0-f05b-5f46-883e-ec8c284fbb83:train:0/sampler_weights/strataiq-gemma4-router-lora-v1",
+  "trained_at": "2026-10-17T07:03:18.670225+00:00",
+  "steps_completed": 3,
+  "dataset_size": 24,
+  "intents": [
+    "DOC_QUERY",
+    "SQL_METRIC_QUERY",
+    "CROSS_SILO_CONFLICT",
+    "EXECUTIVE_DECISION"
+  ],
+  "optimizer": "AdamW",
+  "learning_rate": 0.0001,
+  "lora_rank": 16,
+  "final_loss": 0.042
+}
