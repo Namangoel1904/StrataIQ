@@ -197,7 +197,7 @@ export function useVoice({ onFinal, lang = 'en-IN' }: Options) {
   const speak = useCallback(
     async (res: TalkToDocsResponse, speed = 1) => {
       stopSpeaking()
-      const synthOnly = /fallback/i.test(res.tts_engine) || /webspeech/i.test(res.voice_name) || !res.audio_base64
+      const synthOnly = /fallback/i.test(res.tts_engine || '') || /webspeech/i.test(res.voice_name || '') || !res.audio_base64
       cancelAnimationFrame(rafRef.current)
       if (synthOnly && 'speechSynthesis' in window) {
         const u = new SpeechSynthesisUtterance(res.spoken_answer)

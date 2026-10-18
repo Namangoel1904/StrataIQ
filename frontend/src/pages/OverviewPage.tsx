@@ -46,7 +46,7 @@ export default function OverviewPage() {
           <div className="grid gap-5 xl:grid-cols-12">
             <div className="xl:col-span-7">
               {layer === 'UPPER' && <DecisionPanel />}
-              {layer === 'MIDDLE' && <ConflictPanel conflict={(data.role_scoped_kpis as MiddleKPIs).conflict_alert} />}
+              {layer === 'MIDDLE' && <ConflictPanel conflict={(data.role_scoped_kpis as MiddleKPIs).conflict_alert ?? null} />}
               {layer === 'LOWER' && <BenefitsPanel kpis={data.role_scoped_kpis as LowerKPIs} />}
             </div>
             <div className="xl:col-span-5">

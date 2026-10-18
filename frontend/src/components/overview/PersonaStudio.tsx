@@ -102,7 +102,7 @@ export default function PersonaStudio() {
           <div className="glass flex items-end gap-2.5 rounded-full px-4 pb-4 pt-3 sm:gap-3.5" role="radiogroup" aria-label="Simulate employee">
             {personas.map((p) => {
               const selected = p.user_id === userId
-              const lv = LEVEL_META[p.clearance_level]
+              const lv = (LEVEL_META as Record<number, { name: string; dot: string; text: string }>)[p.clearance_level] ?? LEVEL_META[1]
               return (
                 <button
                   key={p.user_id}
@@ -242,9 +242,9 @@ export default function PersonaStudio() {
               </span>
               <Mic className="size-5" />
             </button>
-            {prompts.slice(0, 3).map((p) => (
+            {prompts.slice(0, 3).map((p, idx) => (
               <button
-                key={p.prompt_id}
+                key={p.spoken_text || idx}
                 onClick={() => ask(p.spoken_text, p.pointed_doc_ids)}
                 className={cn(
                   'group flex flex-col justify-between rounded-2xl bg-muted/80 p-3 text-left transition-all hover:-translate-y-0.5 hover:bg-muted',
@@ -252,7 +252,7 @@ export default function PersonaStudio() {
                 )}
                 title={p.spoken_text}
               >
-                <span className="line-clamp-3 text-[0.8rem] font-medium leading-snug">{p.title}</span>
+                <span className="line-clamp-3 text-[0.8rem] font-medium leading-snug">{p.label || p.spoken_text}</span>
                 <ArrowUpRight className="mt-2 size-4 self-end text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </button>
             ))}

@@ -147,7 +147,7 @@ function TaskNode({ id, title, due, tone }: { id: string; title: string; due: st
 
 export function ConflictPanel({ conflict }: { conflict: ConflictAlert | null }) {
   const { catalog, ask } = useSession()
-  const prompt = catalog.data?.sample_voice_prompts[0]
+  const prompt = catalog.data?.sample_voice_prompts?.[0]
   const gap = conflict ? Math.round((+new Date(conflict.task_b_due) - +new Date(conflict.task_a_due)) / 864e5) : 0
   return (
     <Panel className="pb-6">
@@ -332,10 +332,13 @@ function pulseFor(boot: BootstrapResponse): { title: string; slices: DonutSlice[
   }
   const l = k as LowerKPIs
   const by = new Map<string, number>()
-  for (const t of l.assigned_tasks) by.set(t.status, (by.get(t.status) ?? 0) + 1)
+  for (const t of l.assigned_tasks || []) {
+    const s = t.status || 'PENDING'
+    by.set(s, (by.get(s) ?? 0) + 1)
+  }
   const palette = ['var(--accent-blue)', 'var(--accent-red)', 'var(--accent-green)', 'var(--accent-amber)']
   const slices = [...by.entries()].map(([s, v], i) => ({ label: humanize(s), value: v, color: palette[i % palette.length] }))
-  return { title: 'My Task Status', center: String(l.assigned_tasks.length), caption: 'assigned tasks', slices }
+  return { title: 'My Task Status', center: String((l.assigned_tasks || []).length), caption: 'assigned tasks', slices }
 }
 
 export function ClaimsPanel({ claims }: { claims: ClaimItem[] }) {

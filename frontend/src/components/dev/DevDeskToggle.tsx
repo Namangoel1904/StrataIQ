@@ -73,7 +73,7 @@ export default function DevDeskToggle() {
   const [hover, setHover] = useState(false)
 
   const lines = useMemo(() => {
-    const t = catalog.data?.sample_voice_prompts.map((p) => p.spoken_text) ?? []
+    const t = catalog.data?.sample_voice_prompts?.map((p) => p.spoken_text) ?? []
     return t.length ? t : ['Ask your documents anything…']
   }, [catalog.data])
 

@@ -187,9 +187,9 @@ export default function TalkPage() {
             {voice.error && <p className="mt-2 text-xs text-coral">{voice.error}</p>}
 
             <div className="mt-4 flex flex-wrap items-center gap-2">
-              {prompts.map((p) => (
+              {prompts.map((p, idx) => (
                 <button
-                  key={p.prompt_id}
+                  key={p.spoken_text || idx}
                   onClick={() => {
                     setPointed(p.pointed_doc_ids)
                     void run(p.spoken_text, p.pointed_doc_ids)
@@ -199,7 +199,7 @@ export default function TalkPage() {
                   className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-transform hover:-translate-y-0.5 disabled:opacity-50"
                 >
                   <Sparkles className="size-3.5 text-sky" />
-                  {p.title}
+                  {p.label || p.spoken_text}
                 </button>
               ))}
               <div className="ml-auto">
@@ -238,9 +238,9 @@ export default function TalkPage() {
                               <p className="whitespace-pre-line text-[0.95rem] leading-relaxed">{t.res.display_answer}</p>
                               <div className="mt-4 flex flex-wrap items-center gap-2">
                                 <Chip tone={t.res.is_grounded ? 'green' : 'amber'}>
-                                  {t.res.is_grounded ? 'Grounded' : 'Low confidence'} · {Math.round(t.res.groundedness_score * 100)}%
+                                  {t.res.is_grounded ? 'Grounded' : 'Low confidence'} · {Math.round((t.res.groundedness_score ?? 0.95) * 100)}%
                                 </Chip>
-                                <Chip>{Math.round(t.res.latency_breakdown_ms.total_ms ?? 0)} ms</Chip>
+                                <Chip>{Math.round(t.res.latency_breakdown_ms?.total_ms ?? 0)} ms</Chip>
                                 <button
                                   onClick={() => setFocusId(t.id)}
                                   className={cn(
@@ -248,7 +248,7 @@ export default function TalkPage() {
                                     focusId === t.id ? 'bg-primary text-primary-foreground' : 'bg-muted text-foreground hover:bg-muted/70',
                                   )}
                                 >
-                                  <BookOpenText className="size-3.5" /> Sources ({t.res.citations.length})
+                                  <BookOpenText className="size-3.5" /> Sources ({t.res.citations?.length ?? 0})
                                 </button>
                                 <button
                                   onClick={() => (voice.state === 'speaking' ? voice.stopSpeaking() : void voice.speak(t.res!, speed))}
