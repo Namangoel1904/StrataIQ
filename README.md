@@ -3,13 +3,18 @@
 > **Role-Adaptive Enterprise Knowledge, Voice & Decision Copilot**  
 > *Google Cloud AI Builder Cup — Track 5: Future of Work & Enterprise Productivity*
 
-🌐 **Live Production Application:** [https://strataiq-naomuofz7q-uc.a.run.app](https://strataiq-naomuofz7q-uc.a.run.app)  
-📑 **Interactive API Explorer:** [https://strataiq-naomuofz7q-uc.a.run.app/docs](https://strataiq-naomuofz7q-uc.a.run.app/docs)  
-🔍 **Forensic Proof Endpoint:** [https://strataiq-naomuofz7q-uc.a.run.app/api/v1/agent/sdk-status](https://strataiq-naomuofz7q-uc.a.run.app/api/v1/agent/sdk-status)  
-⚡ **GCP Region:** `us-central1` | **GCP Project:** `friday-494818` | **Warm Standby:** 1 Instance 24/7 (`--min-instances 1`)
+| Resource | Live Link / Details |
+| :--- | :--- |
+| 🌐 **Live Web Application** | **[https://strataiq-naomuofz7q-uc.a.run.app](https://strataiq-naomuofz7q-uc.a.run.app)** |
+| 📑 **Interactive API Explorer (Swagger)** | **[https://strataiq-naomuofz7q-uc.a.run.app/docs](https://strataiq-naomuofz7q-uc.a.run.app/docs)** |
+| 🔍 **Forensic Proof & SDK Status** | **[https://strataiq-naomuofz7q-uc.a.run.app/api/v1/agent/sdk-status](https://strataiq-naomuofz7q-uc.a.run.app/api/v1/agent/sdk-status)** |
+| 🩺 **Liveness & Cloud Run Health Probe** | **[https://strataiq-naomuofz7q-uc.a.run.app/health](https://strataiq-naomuofz7q-uc.a.run.app/health)** |
+| 🔥 **Google Cloud Firestore Console** | **[Firestore Data Panel (`friday-494818`)](https://console.cloud.google.com/firestore/databases/-default-/data/panel?project=friday-494818)** |
+| ⚡ **Cloud Run Metrics & Service Console** | **[Cloud Run Service `strataiq`](https://console.cloud.google.com/run/detail/us-central1/strataiq/metrics?project=friday-494818)** |
+| 🛡️ **Deployment Specs** | `us-central1` · 2 vCPU · 2 GiB · Warm Standby 24/7 (`--min-instances 1`) |
 
 [![Google Cloud Run](https://img.shields.io/badge/Google%20Cloud%20Run-Live%20on%20GCP-4285F4.svg?logo=googlecloud)](https://strataiq-naomuofz7q-uc.a.run.app)
-[![Google Cloud Firestore](https://img.shields.io/badge/Google%20Cloud%20Firestore-Active%20Audit%20Sync-FFCA28.svg?logo=firebase)](https://cloud.google.com/firestore)
+[![Google Cloud Firestore](https://img.shields.io/badge/Google%20Cloud%20Firestore-Active%20Audit%20Sync-FFCA28.svg?logo=firebase)](https://console.cloud.google.com/firestore/databases/-default-/data/panel?project=friday-494818)
 [![Google ADK](https://img.shields.io/badge/Google%20ADK-2.12+-4285F4.svg)](https://cloud.google.com/)
 [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-3.8%20Flash%20%7C%202.5%20Pro-EA4335.svg)](https://ai.google.dev/)
 [![Google Gemma](https://img.shields.io/badge/Google%20Gemma-Gemma%204%20LoRA-FBBC05.svg)](https://ai.google.dev/gemma)
@@ -134,9 +139,94 @@ chmod +x deploy_cloud_run.sh
 The script automatically:
 1. Verifies your active Google Cloud Project ID,
 2. Enables required GCP APIs (`run`, `cloudbuild`, `artifactregistry`, `firestore`, `aiplatform`, `texttospeech`, `speech`),
-3. Builds the production multi-stage Docker container,
+3. Builds the production multi-stage Docker container via Google Cloud Build,
 4. Deploys to Google Cloud Run with `--min-instances 1` (zero cold starts for judges), 2 CPU, and 2 GiB memory,
 5. Securely injects environment variables into Cloud Run.
+
+---
+
+## 🔥 Google Cloud Firestore: Real-Time Audit Sync & Verification
+
+StrataIQ integrates **Google Cloud Firestore** (`google-cloud-firestore`) in Native Mode to provide an immutable, real-time audit ledger of user actions and high-stakes executive governance decisions:
+
+### Direct Cloud Console Link
+🔗 **[Google Cloud Firestore Data Panel (`friday-494818`)](https://console.cloud.google.com/firestore/databases/-default-/data/panel?project=friday-494818)**
+
+### Collections Schema & Triggers
+1. **`strataiq_sessions` Collection:**
+   - **Trigger:** When an employee confirms their parental rider or executes major workspace mutations (e.g., `POST /api/v1/workspace/confirm-parental-rider`).
+   - **Document Structure:**
+     ```json
+     {
+       "event_id": "g4O3eTdIqz7B5peNs1yw",
+       "user_id": "USR-LOW-ENG-005",
+       "layer_code": "LOWER",
+       "action": "CONFIRM_PARENTAL_RIDER",
+       "metadata": {
+         "enrollment_id": "ENR-0005",
+         "policy_id": "POL-NOVASHIELD-2026",
+         "monthly_copay_deduction": 1200
+       },
+       "timestamp": "2026-10-18T15:53:29.134731+00:00",
+       "source": "strataiq_cloud_run"
+     }
+     ```
+2. **`strataiq_decisions` Collection:**
+   - **Trigger:** When an Upper Layer decision-maker approves a multi-option quantified decision (e.g., `POST /api/v1/decisions/DEC-2026-001/approve`).
+   - **Document Structure:**
+     ```json
+     {
+       "decision_id": "DEC-2026-001",
+       "selected_option": "OPTION_B_RECOMMENDED",
+       "approver_id": "USR-UPPER-FIN-001",
+       "metadata": {
+         "approver_name": "Arvind Mehta",
+         "tasks_mutated": ["TSK-02", "TSK-03"]
+       },
+       "status": "APPROVED",
+       "decided_at": "2026-10-18T15:53:43.873316+00:00",
+       "source": "strataiq_cloud_run"
+     }
+     ```
+
+### How to Verify Firestore Records via Python
+Run this one-liner in your terminal to query live audit records from your GCP project:
+```bash
+python -c "from google.cloud import firestore; db = firestore.Client(project='friday-494818'); print('Sessions:', [d.to_dict() for d in db.collection('strataiq_sessions').stream()]); print('Decisions:', [d.to_dict() for d in db.collection('strataiq_decisions').stream()])"
+```
+
+---
+
+## 🔄 Continuous Deployment: Updating Code & Reflecting Changes on Cloud Run
+
+Whenever you modify frontend components (`frontend/src/`) or backend routers/agents (`backend/app/`), roll out updates to Cloud Run with **zero downtime**:
+
+### 1. Test Locally (Optional but Recommended)
+```bash
+cd backend
+python -m pytest tests/ -v
+```
+
+### 2. Redeploy with One Command
+From the root repository directory (`d:/StrataIQ`):
+```powershell
+.\deploy_cloud_run.ps1
+```
+*(or `./deploy_cloud_run.sh` in Bash)*
+
+### What Happens Automatically Under the Hood:
+1. **Dynamic Secrets:** Reads fresh API keys from `backend/.env` directly into process memory.
+2. **Cloud Build Pipeline:** Google Cloud Build packages the repository (respecting `.gcloudignore`), executes the multi-stage Dockerfile, compiles the React SPA bundle in Stage 1, and packages the Python server in Stage 2.
+3. **Artifact Registry:** The new container image is automatically tagged and pushed to Artifact Registry (`us-central1-docker.pkg.dev/friday-494818/cloud-run-source-deploy/strataiq`).
+4. **Zero-Downtime Traffic Shift:** Cloud Run provisions a new revision (e.g., `strataiq-00002-...`), verifies health probes, and atomically shifts 100% of live traffic to the new revision without dropping in-flight requests.
+5. **Warm Instance Preserved:** `--min-instances 1` ensures the updated service remains instantly warm with zero cold starts.
+
+### 3. Sync Source Code to GitHub
+```bash
+git add .
+git commit -m "feat: your update description"
+git push origin frontend
+```
 
 ---
 
