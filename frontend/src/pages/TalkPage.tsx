@@ -102,8 +102,11 @@ export default function TalkPage() {
   runRef.current = run
 
   // A question handed over from the Overview page (prompt tiles, "Ask again", doc cards).
+  const handledPendingRef = useRef<unknown>(null)
   useEffect(() => {
     if (!pending || !docs.data) return
+    if (handledPendingRef.current === pending) return // StrictMode re-runs effects before clearPending lands
+    handledPendingRef.current = pending
     const ids = pending.docIds.filter((id) => accessible.some((d) => d.doc_id === id))
     setPointed(ids)
     clearPending()

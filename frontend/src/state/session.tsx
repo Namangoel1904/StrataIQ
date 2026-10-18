@@ -3,7 +3,7 @@ import { api, DEFAULT_USER, setApiUser } from '@/lib/api'
 import { useAsync, type AsyncState } from '@/lib/hooks'
 import type { BootstrapResponse, DocumentsListResponse, UserContext, VoiceCatalogResponse } from '@/lib/types'
 
-export type View = 'overview' | 'documents' | 'talk' | 'benchmark'
+export type View = 'overview' | 'documents' | 'talk' | 'benchmark' | 'guide'
 export type Theme = 'light' | 'dark'
 export interface PendingAsk {
   query: string
@@ -45,7 +45,7 @@ const write = (k: string, v: string) => {
   }
 }
 
-const VIEWS: View[] = ['overview', 'documents', 'talk', 'benchmark']
+const VIEWS: View[] = ['overview', 'documents', 'talk', 'benchmark', 'guide']
 const viewFromHash = (): View => {
   const h = window.location.hash.replace('#/', '')
   return (VIEWS as string[]).includes(h) ? (h as View) : 'overview'

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#e8eaed" />
+    <title>Matthew Yu — Sketchbook</title>
+    <link rel="preconnect" href="https://matthewyu.dev" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="portfolio">
+      <header class="site-header" aria-label="Site navigation">
+        <a class="wordmark" href="#top">Matthew Yu</a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#work">work</a><a href="#play">play</a><a href="#about">about</a><a href="#inspiration">inspiration</a>
+        </nav>
+        <div class="social-nav" aria-label="Social links"><a href="#instagram" aria-label="Instagram">◎</a><a href="#x" aria-label="X">𝕏</a><a href="#linkedin" aria-label="LinkedIn">in</a><a href="mailto:hello@matthewyu.dev" aria-label="Email">✉</a></div>
+      </header>
+
+      <section class="intro" id="top" aria-label="Sketchbook">
+        <p class="eyebrow">DESIGNER / ENGINEER / ARTIST / STUDENT @ STANFORD</p>
+        <h1 class="hero-name" aria-hidden="true">Matthew Yu</h1>
+
+        <div class="book-stage" aria-label="Interactive sketchbook">
+          <button class="page-control previous" type="button" aria-label="Previous page"><svg viewBox="0 0 24 48" aria-hidden="true"><path d="M18 3 6 24l12 21" /></svg></button>
+          <div class="book" role="group" aria-roledescription="book" aria-label="Sketchbook pages">
+            <div class="paper-spread" id="paperSpread">
+              <img class="spread-image" alt="" draggable="false" />
+              <div class="turn-leaf" aria-hidden="true">
+                <div class="leaf-face leaf-front"></div>
+                <div class="leaf-face leaf-back"></div>
+              </div>
+              <span class="book-gutter" aria-hidden="true"></span>
+            </div>
+          </div>
+          <button class="page-control next" type="button" aria-label="Next page"><svg viewBox="0 0 24 48" aria-hidden="true"><path d="m6 3 12 21L6 45" /></svg></button>
+        </div>
+
+        <div class="book-caption" aria-live="polite">
+          <span class="caption-title">TAIPEI</span>
+          <button class="scroll-cue" type="button" aria-label="Scroll to the next section"><span></span><span></span></button>
+        </div>
+        <p class="page-status" aria-live="polite"></p>
+      </section>
+      <section class="below-fold" id="work" aria-label="More work"><span>SELECTED WORK</span><span class="below-line"></span><span>SCROLL TO EXPLORE</span></section>
+    </main>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

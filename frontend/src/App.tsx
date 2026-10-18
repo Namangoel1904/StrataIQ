@@ -10,6 +10,7 @@ import OverviewPage from '@/pages/OverviewPage'
 import DocumentsPage from '@/pages/DocumentsPage'
 import TalkPage from '@/pages/TalkPage'
 import BenchmarkPage from '@/pages/BenchmarkPage'
+import UserGuidePage from '@/pages/UserGuidePage'
 
 type Phase = 'loading' | 'hero' | 'rippling' | 'app'
 
@@ -62,6 +63,7 @@ function Root() {
           {view === 'documents' && <DocumentsPage />}
           {view === 'talk' && <TalkPage />}
           {view === 'benchmark' && <BenchmarkPage />}
+          {view === 'guide' && <UserGuidePage />}
         </Shell>
       )}
 

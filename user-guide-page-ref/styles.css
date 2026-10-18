@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Manrope:wght@300;400;500&display=swap');
+
+:root { color-scheme: light; --paper: #f4f0e6; --ink: #55585d; --blue: #1455d9; --turn-duration: 720ms; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #e8eaed; color: var(--ink); font-family: Manrope, Arial, sans-serif; }
+button, a { color: inherit; }
+.portfolio { min-height: 100vh; overflow: hidden; }
+.site-header { height: 62px; padding: 0 2.6vw; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; position: absolute; inset: 0 0 auto; z-index: 5; font-size: 13px; letter-spacing: .15em; }
+.site-header a { text-decoration: none; }
+.wordmark { justify-self: start; font-size: 16px; letter-spacing: .08em; }
+.main-nav, .social-nav { display: flex; align-items: center; gap: clamp(16px, 2.5vw, 38px); }
+.main-nav { text-transform: lowercase; }
+.main-nav a:first-child { color: #222; }
+.social-nav { justify-self: end; gap: clamp(14px, 2vw, 32px); font-size: 15px; }
+.social-nav a:nth-child(3) { font-size: 13px; font-weight: 500; }
+.intro { min-height: min(100vh, 900px); height: max(690px, 100svh); position: relative; display: flex; align-items: center; flex-direction: column; padding: 60px 4vw 45px; }
+.eyebrow { position: absolute; top: 60px; margin: 0; color: #c5c8cb; font: 300 12px 'DM Mono', monospace; letter-spacing: .28em; text-align: center; }
+.hero-name { position: absolute; top: 10.5%; margin: 0; color: #3264d5; font-size: clamp(92px, 10.5vw, 154px); line-height: 1; font-weight: 500; letter-spacing: -.09em; filter: blur(7px); opacity: .62; user-select: none; white-space: nowrap; }
+.book-stage { position: absolute; top: 50%; left: 50%; width: min(82vw, 1040px); height: min(58vw, 550px); min-height: 320px; transform: translate(-50%, -51%); display: flex; align-items: center; justify-content: center; perspective: 1800px; }
+.book { width: min(48vw, 585px); height: min(40vw, 480px); min-height: 310px; position: relative; perspective: 1800px; filter: drop-shadow(0 28px 24px rgba(56, 58, 62, .16)); }
+.paper-spread { position: absolute; inset: 0; transform-style: preserve-3d; border-radius: 2.5% 2.5% 2% 2%; overflow: hidden; background: var(--paper); }
+.spread-image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; user-select: none; pointer-events: none; }
+.book-gutter { position: absolute; z-index: 3; top: 0; bottom: 0; left: 50%; width: 12px; transform: translateX(-50%); background: linear-gradient(90deg, transparent, rgba(91, 81, 62, .17) 44%, rgba(255, 255, 255, .35) 52%, transparent); pointer-events: none; }
+.turn-leaf { position: absolute; z-index: 4; top: 0; bottom: 0; left: 50%; width: 50%; transform-origin: left center; transform-style: preserve-3d; pointer-events: none; }
+.turn-leaf.reverse { left: 0; transform-origin: right center; }
+.leaf-face { position: absolute; inset: 0; overflow: hidden; background-color: var(--paper); background-repeat: no-repeat; backface-visibility: hidden; }
+.leaf-front { border-radius: 0 2.5% 2% 0; background-size: 200% 100%; background-position: right center; }
+.leaf-back { transform: rotateY(180deg); border-radius: 2.5% 0 0 2%; background-size: 200% 100%; background-position: left center; }
+.turn-leaf.is-turning { animation: turn-forward var(--turn-duration) cubic-bezier(.38,.02,.21,1) both; }
+.turn-leaf.is-turning.reverse { animation-name: turn-backward; }
+@keyframes turn-forward { 0% { transform: rotateY(0); } 34% { box-shadow: -15px 8px 22px rgba(46,42,34,.15); } 100% { transform: rotateY(-180deg); box-shadow: none; } }
+@keyframes turn-backward { 0% { transform: rotateY(0); } 34% { box-shadow: 15px 8px 22px rgba(46,42,34,.15); } 100% { transform: rotateY(180deg); box-shadow: none; } }
+.page-control { position: absolute; z-index: 4; width: 52px; height: 80px; padding: 0; border: 0; background: transparent; cursor: pointer; display: grid; place-items: center; opacity: .82; transition: opacity .2s; }
+.page-control:hover { opacity: 1; }
+.page-control.previous { left: 2%; }.page-control.next { right: 2%; }
+.page-control svg { width: 24px; height: 48px; overflow: visible; }
+.page-control path { fill: none; stroke: #606369; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+.book-caption { position: absolute; top: calc(50% + min(25vw, 305px)); display: flex; align-items: center; flex-direction: column; gap: 19px; }
+.caption-title { font: 400 12px 'DM Mono', monospace; letter-spacing: .25em; color: #686a6e; }
+.scroll-cue { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0; border: 0; background: none; padding: 2px 16px 0; height: 29px; cursor: pointer; }
+.scroll-cue span { width: 22px; height: 11px; border-bottom: 1px solid #96999d; border-left: 1px solid #96999d; transform: rotate(-45deg) skew(10deg, 10deg); margin-top: -5px; }
+.scroll-cue span + span { margin-top: -1px; }
+.page-status { position: absolute; bottom: 20px; margin: 0; color: #a3a6aa; font: 10px 'DM Mono', monospace; letter-spacing: .18em; opacity: 0; }
+.below-fold { min-height: 50vh; display: flex; align-items: center; gap: 24px; padding: 8vw; color: #8a8d91; font: 10px 'DM Mono', monospace; letter-spacing: .24em; }
+.below-line { flex: 1; height: 1px; background: #d1d3d5; }
+@media (max-width: 700px) {
+  .site-header { grid-template-columns: 1fr auto; height: 58px; padding: 0 5vw; }
+  .main-nav { display: none; }.social-nav { gap: 17px; }
+  .intro { height: 100svh; min-height: 640px; padding-inline: 0; }
+  .eyebrow { top: 82px; width: 90%; font-size: 9px; letter-spacing: .18em; }
+  .hero-name { top: 23%; font-size: clamp(62px, 16vw, 105px); filter: blur(5px); }
+  .book-stage { top: 49%; width: 100%; height: 75vw; min-height: 0; }
+  .book { width: min(76vw, 420px); height: min(62vw, 350px); min-height: 250px; }
+  .page-control { width: 36px; }.page-control.previous { left: 1%; }.page-control.next { right: 1%; }
+  .page-control span { width: 13px; height: 26px; }
+  .book-caption { top: calc(49% + min(38vw, 215px)); }
+  .below-fold { min-height: 35vh; padding: 8vw 5vw; gap: 12px; font-size: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
