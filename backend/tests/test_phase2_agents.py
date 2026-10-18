@@ -346,3 +346,56 @@ def test_backboard_memory_service_sync():
         assert "cataract" in mem.recent_topics[0].lower()
     finally:
         db.close()
+
+
+# ── 13. Department-level EBITDA & Cost Allocation (DOC-005 / DOC-008, Clearance 3) ──
+
+DEPT_EBITDA_QUERY = "What are the department-level EBITDA and cost allocations under NovaShield MSA?"
+
+
+def test_department_ebitda_and_cost_allocations_query(upper_cfo_client: TestClient, lower_client: TestClient):
+    # ── CFO (CL:3): full 6-department table + EBITDA impact via /agent/query ──
+    resp = upper_cfo_client.post("/api/v1/agent/query", json={"query": DEPT_EBITDA_QUERY})
+    assert resp.status_code == 200
+    body = resp.json()
+    answer = body["answer"]
+    for figure in ["93,82,800", "58,08,400", "2,23,40,000", "19,20,000", "Option B"]:
+        assert figure in answer, f"Missing {figure} in CFO agent answer"
+    for dept in ["Engineering", "Operations", "Finance", "IT", "Human Resources", "Legal"]:
+        assert dept in answer
+    assert "Organization breakdown across" not in answer
+    assert body["sql_data"]["query_type"] == "DEPARTMENT_FINANCIAL_ALLOCATION"
+    assert "93,82,800" in body["openui_lang"]
+
+    # ── CFO (CL:3): same via /voice/talk-to-docs (pointed at DOC-005) ──
+    voice = upper_cfo_client.post(
+        "/api/v1/voice/talk-to-docs",
+        json={"query": DEPT_EBITDA_QUERY, "pointed_doc_ids": ["DOC-005"]},
+    )
+    assert voice.status_code == 200
+    display = voice.json()["display_answer"]
+    for figure in ["93,82,800", "58,08,400", "2,23,40,000", "19,20,000", "Option B"]:
+        assert figure in display, f"Missing {figure} in CFO voice display_answer"
+    assert "Organization breakdown across" not in display
+
+    # ── Engineer (CL:1): explicit Zero-Trust RLS notice instead of a vague 1-liner ──
+    resp = lower_client.post("/api/v1/agent/query", json={"query": DEPT_EBITDA_QUERY})
+    assert resp.status_code == 200
+    body = resp.json()
+    answer = body["answer"]
+    assert "Level 3" in answer and "DOC-005" in answer and "DOC-008" in answer
+    assert "Zero-Trust RLS Notice" in answer
+    assert "93,82,800" not in answer and "2,23,40,000" not in answer  # no figure leakage
+    assert body["sql_data"]["metrics"]["rls_restriction_notice"].startswith("Zero-Trust RLS Notice")
+    assert "Organization breakdown across" not in answer
+
+    voice = lower_client.post("/api/v1/voice/talk-to-docs", json={"query": DEPT_EBITDA_QUERY, "pointed_doc_ids": []})
+    assert voice.status_code == 200
+    display = voice.json()["display_answer"]
+    assert "Level 3" in display and "DOC-005" in display and "DOC-008" in display
+    assert "93,82,800" not in display
+
+    # Explicitly pointing at the restricted ledger is hard-denied with the same boundary
+    denied = lower_client.post("/api/v1/voice/talk-to-docs", json={"query": DEPT_EBITDA_QUERY, "pointed_doc_ids": ["DOC-005"]})
+    assert denied.status_code == 403
+    assert "Level 3" in denied.json()["detail"]

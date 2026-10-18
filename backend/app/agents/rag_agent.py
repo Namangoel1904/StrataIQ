@@ -13,6 +13,7 @@ Search strategy (no live embeddings in Phase 1 DB):
 from __future__ import annotations
 
 import csv
+import logging
 import math
 import re
 from dataclasses import dataclass, field
@@ -25,6 +26,7 @@ from app.database import SecurityContext
 from app.models import Document, DocumentChunk
 
 settings = get_settings()
+logger = logging.getLogger("strataiq.gemini_fallback")
 
 
 @dataclass
@@ -115,8 +117,13 @@ class DocumentRAGAgent:
         if self._genai_client and settings.GEMINI_API_KEY:
             try:
                 return self._embedding_search(query, ctx, db, top_k, doc_hints)
-            except Exception:
-                pass  # Fall through to keyword search
+            except Exception as exc:
+                logger.warning(
+                    "[GEMINI_FALLBACK] stage=rag_embedding_search reason=gemini_error error=%s: %s user=%s query=%r -> using BM25 keyword search",
+                    type(exc).__name__, exc, ctx.user_id, query[:120],
+                )
+        else:
+            logger.warning("[GEMINI_FALLBACK] stage=rag_embedding_search reason=no_gemini_client_or_api_key -> using BM25 keyword search")
 
         return self._keyword_search(query, ctx, db, top_k, doc_hints)
 

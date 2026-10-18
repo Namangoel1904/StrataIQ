@@ -9,6 +9,7 @@ import Shell from '@/components/shell/Shell'
 import OverviewPage from '@/pages/OverviewPage'
 import DocumentsPage from '@/pages/DocumentsPage'
 import TalkPage from '@/pages/TalkPage'
+import BenchmarkPage from '@/pages/BenchmarkPage'
 
 type Phase = 'loading' | 'hero' | 'rippling' | 'app'
 
@@ -60,6 +61,7 @@ function Root() {
           {view === 'overview' && <OverviewPage />}
           {view === 'documents' && <DocumentsPage />}
           {view === 'talk' && <TalkPage />}
+          {view === 'benchmark' && <BenchmarkPage />}
         </Shell>
       )}
 

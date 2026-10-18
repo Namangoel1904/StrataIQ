@@ -240,6 +240,26 @@ class PointedDocVoiceAgent:
         """Construct natural spoken summary script for Voice TTS."""
         q_lower = query.lower()
 
+        # Department EBITDA / cost allocation (RLS notice for sub-Level-3 users)
+        if sql_res.query_type == "DEPARTMENT_FINANCIAL_RESTRICTED":
+            return (
+                "Department level EBITDA and premium ledger figures are restricted. "
+                "Documents DOC-005 and DOC-008 require Upper Layer Executive Clearance, Level 3. "
+                "Switch to the CFO persona to unlock the full department cost allocations."
+            )
+        if sql_res.query_type == "DEPARTMENT_FINANCIAL_ALLOCATION":
+            m = sql_res.metrics
+            t = m["company_total"]
+            by_name = {r["dept_id"]: r for r in m["department_financials"]}
+            return (
+                f"Under the NovaShield agreement, company premium rises from "
+                f"{t['legacy_2025_premium_inr'] / 100000:.1f} Lakhs to {t['novashield_2026_premium_inr'] / 100000:.1f} Lakhs. "
+                f"Engineering carries {by_name['DEPT-ENG']['novashield_2026_premium_inr'] / 100000:.1f} Lakhs and Operations "
+                f"{by_name['DEPT-OPS']['novashield_2026_premium_inr'] / 100000:.1f} Lakhs. "
+                f"Option A hits Q4 EBITDA by minus {-m['option_a_ebitda_impact_inr'] / 100000:.1f} Lakhs; "
+                f"recommended Option B nets zero EBITDA impact."
+            )
+
         # Sahyadri Cataract Showcase (Lower Layer)
         if "sahyadri" in q_lower or ("cataract" in q_lower and "hospital" in q_lower):
             script = (

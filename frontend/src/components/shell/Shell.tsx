@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { Bell, FolderOpen, LayoutGrid, Layers, Mic, Moon, RotateCcw, ShieldCheck, Sun, type LucideIcon } from 'lucide-react'
+import { BarChart3, Bell, FolderOpen, LayoutGrid, Layers, Mic, Moon, RotateCcw, ShieldCheck, Sun, type LucideIcon } from 'lucide-react'
 import { api } from '@/lib/api'
 import { deriveAlerts } from '@/lib/alerts'
 import { cn } from '@/lib/utils'
@@ -12,6 +12,7 @@ const NAV: { view: View; label: string; icon: LucideIcon }[] = [
   { view: 'overview', label: 'Overview', icon: LayoutGrid },
   { view: 'documents', label: 'Documents', icon: FolderOpen },
   { view: 'talk', label: 'Talk to Docs', icon: Mic },
+  { view: 'benchmark', label: 'Open UI Benchmark', icon: BarChart3 },
 ]
 
 function Logo() {
