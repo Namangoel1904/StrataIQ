@@ -1,10 +1,10 @@
-"""
-StrataIQ FastAPI Application Entry Point
+import os
+from pathlib import Path
 
-Mounts all Phase 1 routers under /api/v1 with CORS enabled for frontend dev.
-"""
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.routers import workspace, documents, decisions, agent, voice
 
@@ -63,14 +63,56 @@ def health_check():
     """Liveness probe for Cloud Run / load balancer."""
     return {
         "status": "ok",
-        "service": "StrataIQ Phase 1",
+        "service": "StrataIQ Enterprise",
         "version": "1.0.0",
+        "cloud_run_ready": True,
     }
 
 
-@app.get("/", tags=["Health"])
-def root():
-    return {
-        "message": "StrataIQ Enterprise API is running. Visit /docs for the interactive API explorer.",
-        "phase": "Phase 1 — Backend Core & Zero-Trust RLS Engine",
-    }
+# ── Locate Compiled Frontend SPA (React + Vite) ──────────────────────────────
+def _find_frontend_dist() -> Path | None:
+    candidates = [
+        Path(__file__).resolve().parent.parent.parent / "frontend" / "dist",
+        Path("/app/frontend/dist"),
+        Path(__file__).resolve().parent.parent / "static_ui",
+    ]
+    for c in candidates:
+        if c.exists() and (c / "index.html").exists():
+            return c
+    return None
+
+
+frontend_dist = _find_frontend_dist()
+
+if frontend_dist:
+    assets_dir = frontend_dist / "assets"
+    if assets_dir.exists():
+        app.mount("/assets", StaticFiles(directory=str(assets_dir)), name="assets")
+
+    @app.get("/", tags=["Frontend SPA"])
+    def root_spa():
+        return FileResponse(frontend_dist / "index.html")
+
+    @app.get("/{full_path:path}", tags=["Frontend SPA"])
+    def catchall_spa(full_path: str):
+        if (
+            full_path.startswith("api/")
+            or full_path.startswith("docs")
+            or full_path.startswith("redoc")
+            or full_path == "openapi.json"
+        ):
+            raise HTTPException(status_code=404, detail="API route not found")
+        # If requesting a specific file that exists in dist (e.g. favicon.ico, etc.)
+        target = frontend_dist / full_path
+        if target.is_file():
+            return FileResponse(target)
+        # Otherwise fallback to index.html for client-side routing
+        return FileResponse(frontend_dist / "index.html")
+
+else:
+    @app.get("/", tags=["Health"])
+    def root():
+        return {
+            "message": "StrataIQ Enterprise API is running. Visit /docs for the interactive API explorer.",
+            "phase": "Production Ready (Frontend not built locally)",
+        }

@@ -1,0 +1,14 @@
+**/.env
+**/*.env
+**/.git
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+frontend/node_modules
+frontend/dist
+backend/.venv
+venv
+*credentials*.json
+*service-account*.json
+.agents
+.gemini

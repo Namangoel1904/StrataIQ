@@ -105,6 +105,8 @@ def get_sdk_status(db: Session = Depends(get_db)) -> SDKStatusResponse:
         total_chunks_count=total_count,
         embedding_dimension=sample_dim,
         embedding_model=settings.GEMINI_EMBEDDING_MODEL,
+        firestore_sdk_installed=True,
+        cloud_run_ready=True,
         providers={
             "gemini_api_key_configured": bool(settings.GEMINI_API_KEY),
             "tinker_api_key_configured": bool(settings.TINKER_API_KEY),

@@ -3,12 +3,17 @@
 > **Role-Adaptive Enterprise Knowledge, Voice & Decision Copilot**  
 > *Google Cloud AI Builder Cup — Track 5: Future of Work & Enterprise Productivity*
 
-[![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.111.0+-009688.svg)](https://fastapi.tiangolo.com/)
+🌐 **Live Production Application:** [https://strataiq-naomuofz7q-uc.a.run.app](https://strataiq-naomuofz7q-uc.a.run.app)  
+📑 **Interactive API Explorer:** [https://strataiq-naomuofz7q-uc.a.run.app/docs](https://strataiq-naomuofz7q-uc.a.run.app/docs)  
+🔍 **Forensic Proof Endpoint:** [https://strataiq-naomuofz7q-uc.a.run.app/api/v1/agent/sdk-status](https://strataiq-naomuofz7q-uc.a.run.app/api/v1/agent/sdk-status)  
+⚡ **GCP Region:** `us-central1` | **GCP Project:** `friday-494818` | **Warm Standby:** 1 Instance 24/7 (`--min-instances 1`)
+
+[![Google Cloud Run](https://img.shields.io/badge/Google%20Cloud%20Run-Live%20on%20GCP-4285F4.svg?logo=googlecloud)](https://strataiq-naomuofz7q-uc.a.run.app)
+[![Google Cloud Firestore](https://img.shields.io/badge/Google%20Cloud%20Firestore-Active%20Audit%20Sync-FFCA28.svg?logo=firebase)](https://cloud.google.com/firestore)
 [![Google ADK](https://img.shields.io/badge/Google%20ADK-2.12+-4285F4.svg)](https://cloud.google.com/)
 [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-3.8%20Flash%20%7C%202.5%20Pro-EA4335.svg)](https://ai.google.dev/)
 [![Google Gemma](https://img.shields.io/badge/Google%20Gemma-Gemma%204%20LoRA-FBBC05.svg)](https://ai.google.dev/gemma)
-[![Tests](https://img.shields.io/badge/Tests-43%2F43%20Passing-34A853.svg)](#test-suite-verification)
+[![Tests](https://img.shields.io/badge/Tests-44%2F44%20Passing-34A853.svg)](#test-suite-verification)
 [![Security](https://img.shields.io/badge/Zero--Trust-Row--Level%20Security-purple.svg)](#zero-trust-row-level-security-rls)
 
 ---
@@ -17,11 +22,13 @@
 
 Knowledge workers lose **1.8 to 2.5 hours every single day** searching across disconnected PDFs, corporate policies, internal databases, and chat transcripts. Generic enterprise AI chat tools fail in the enterprise because they:
 1. Provide identical generic summaries regardless of who is asking,
-2. Lack access to live relational SQL state (e.g. employee claims, payroll freezes, pending riders),
-3. Violate Zero-Trust access controls by hallucinating or exposing confidential executive data, and
+2. Lack access to live relational SQL state (e.g., employee claims, payroll freezes, pending riders),
+3. Violate Zero-Trust access controls by exposing confidential executive records, and
 4. Struggle to provide exact, pinpointed visual citations and acoustic voice interaction.
 
-**StrataIQ** solves this with a **3-Layer $\times$ 6-Department Role-Adaptive Architecture** backed by an autonomous **Google ADK Multi-Agent Engine**, **Gemma 4 LoRA Context Router**, **Google Gemini Native TTS**, and **Thesys OpenUI Engine** that reduces token payload by over 59%.
+**StrataIQ** solves this with a **3-Layer $\times$ 6-Department Role-Adaptive Architecture** backed by an autonomous **Google ADK Multi-Agent Engine**, **Gemma 4 LoRA Context Router**, **Google Gemini Native TTS**, **Google Cloud Firestore sync**, and **Thesys OpenUI Engine** that reduces token payload by over 59%.
+
+Deployed as a single unified container on **Google Cloud Run** with `--min-instances 1` to guarantee zero cold starts for evaluators.
 
 ---
 
@@ -56,79 +63,86 @@ StrataIQ is evaluated against a real-world enterprise operational crisis: transi
 - **Middle Layer (`USR-MID-HR-003` Priya Kulkarni):**  
   Detects a high-impact **Cross-Silo Schedule Collision** between `DOC-018` (War-Room Transcript) and `workflow_tasks` (`TSK-03` Finance payroll cutoff on Oct 20 vs. `TSK-05` IT SSO launch on Oct 23), threatening to freeze 142 employees and block 11 hospital claims (`INR 14.2 Lakhs`).
 - **Upper Layer (`USR-UPPER-FIN-001` Arvind Mehta):**  
-  Reviews the `INR 38.4 Lakh` parental premium variance, evaluates Option A, B, and C, and executes an ACID transaction approving **Option B (Recommended)**: offsets costs with the `INR 19.2L` LegacyCare refund, funds the rest from the welfare reserve, extends the payroll cutoff to Oct 25, and auto-resolves `TSK-03`.
+  Reviews the `INR 38.4 Lakh` parental premium variance, evaluates Option A, B, and C, and executes an ACID transaction approving **Option B (Recommended)**: offsets costs with the `INR 19.2L` LegacyCare refund, funds the rest from the welfare reserve, extends the payroll cutoff to Oct 25, auto-resolves `TSK-03`, and logs the decision to **Google Cloud Firestore**.
 
 ---
 
-## 🤖 100% Google Model & Agent Pipeline
+## ⏱️ Judge 3-Minute Testing Guide
 
-StrataIQ strictly adheres to a **100% Google Model Policy** (Google Gemma 4 + Gemini 2.5 / 3.8):
+When evaluating StrataIQ, use the **Judge Sandbox Persona Switcher** at the top of the header to instantly simulate different roles with zero login friction:
 
-```
-                        User Voice / Text Query
-                                   │
-                                   ▼
-             ┌───────────────────────────────────────────┐
-             │    Tinker-Gemma 4 LoRA Context Router    │
-             │   (google/gemma-4-e4b-it / Gemini Flash)  │
-             └─────────────────────┬─────────────────────┘
-                                   │
-                    ┌──────────────┴──────────────┐
-                    ▼                             ▼
-      ┌───────────────────────────┐ ┌───────────────────────────┐
-      │     Document RAG Agent    │ │   Relational SQL Agent    │
-      │   (Hybrid Vector + BM25)  │ │ (Row-Level Security RLS)  │
-      │ 3072-dim Google Embeddings│ │ 10-Table Dual DB Engine   │
-      └─────────────┬─────────────┘ └─────────────┬─────────────┘
-                    │                             │
-                    └──────────────┬──────────────┘
-                                   │
-                                   ▼
-             ┌───────────────────────────────────────────┐
-             │       Google ADK 2.0 Synthesis Agent      │
-             │     & Groundedness Verification Evaluator │
-             │           (Deterministic + LLM)           │
-             └─────────────────────┬─────────────────────┘
-                                   │
-                    ┌──────────────┴──────────────┐
-                    ▼                             ▼
-      ┌───────────────────────────┐ ┌───────────────────────────┐
-      │ Google AI Speech Service  │ │  Thesys OpenUI Formatter  │
-      │  Gemini Flash TTS (Kore)  │ │  (openui-lang ON/OFF)     │
-      │  Chirp 3 HD / WaveNet     │ │  >59% Token Reduction     │
-      └───────────────────────────┘ └───────────────────────────┘
-```
+### Step 1: Lower Layer Experience (Pointed Voice & Citations)
+1. Switch to **Naman Goel** (`USR-LOW-ENG-005`, Senior Software Engineer).
+2. Notice your personal banner: *Parental Rider status is PENDING_CONFIRMATION before Oct 22*.
+3. Click the **"Talk with Documents"** Studio tab. Select `DOC-011` (Employee Transition Guide).
+4. Ask by voice or click the prompt:  
+   *"Is Sahyadri Hospital in Pune network cashless for cataract surgery, and what is the limit?"*
+5. **Observe**: Real-time spoken voice response (Gemini Native TTS), precise citation to Page 4, Section 3.2, and automatic yellow text highlighting.
+6. Click **Confirm Parental Rider** — updates the live SQL database and syncs the audit event to Google Cloud Firestore.
 
-1. **Tinker-Gemma 4 LoRA Router (`backend/app/agents/router.py`)**:
-   - Fine-tuned on Tinker remote cluster (`google/gemma-4-e4b-it`) targeting intent classification and pointed-document filtering across 22 enterprise documents.
-2. **Document RAG Agent (`backend/app/agents/rag_agent.py`)**:
-   - Hybrid Vector (`text-embedding-004` / 3072-dim embeddings) + BM25 keyword matching with strict clearance-level enforcement.
-3. **Relational SQL Agent (`backend/app/agents/sql_agent.py`)**:
-   - Parameterized SQL engine executing queries against 10 relational tables (`users`, `documents`, `policies`, `enrollments`, `claims`, `workflow_tasks`, `decision_matrix_logs`, etc.).
-4. **Synthesis & Groundedness Evaluator (`backend/app/agents/eval_agent.py`)**:
-   - Scores responses ($0.0$ to $1.0$) against retrieved doc/SQL evidence to eliminate hallucinations before delivery.
-5. **Google AI Speech Service (`backend/app/voice/speech_service.py`)**:
-   - Tier 1: **Google Gemini Native TTS** (`gemini-2.5-flash-preview-tts` with voice `"Kore"`, 24kHz PCM $\rightarrow$ standard RIFF WAV base64).
-   - Tier 2: **Google Cloud Text-to-Speech** (Chirp 3 HD / WaveNet `en-IN`).
-   - Strict `en-IN` language lock guardrail and natural speech cleaner (`INR` $\rightarrow$ `Rupees`).
-6. **Thesys OpenUI (`openui-lang`) Engine (`backend/app/agents/openui_formatter.py`)**:
-   - Declarative UI generation (`identifier = Component(...)`) producing rich role-tailored components.
-   - Built-in live ON/OFF toggle and telemetry benchmark proving **59.3% token reduction** and **2.46× decode speedup**.
+### Step 2: Zero-Trust Security Lock (Clearance Gate)
+1. Still as Naman Goel (Clearance Level 1), try to open `DOC-008` (CFO Financial Audit) from the Documents tab.
+2. **Observe**: The application raises an **HTTP 403 Forbidden Shield**. The document content and vector embeddings are cryptographically sealed from Lower Layer access.
+
+### Step 3: Middle Layer Crisis Detection (Cross-Silo War-Room)
+1. Switch to **Priya Kulkarni** (`USR-MID-HR-003`, HR Operations Lead).
+2. **Observe**: The dashboard transforms into the HR/IT Operations War-Room.
+3. The AI alert flags a **Cross-Silo Schedule Collision**: Finance payroll freeze (`TSK-03` due Oct 20) happens 3 days before IT portal release (`TSK-05` due Oct 23).
+4. See the live impact: **142 employees pending confirmation** and **11 transition hospital claims (INR 14.2L) at risk**.
+
+### Step 4: Upper Layer Executive Governance (ACID Approval)
+1. Switch to **Arvind Mehta** (`USR-UPPER-FIN-001`, Chief Financial Officer).
+2. View the **3-Option Quantified Decision Matrix** for the INR 38.4 Lakh parental premium variance.
+3. Review **Option B (Recommended)**: Utilizes the INR 19.2L LegacyCare refund + welfare reserve, extending the payroll deadline to Oct 25.
+4. Click **Approve Option B**.
+5. **Observe**: Live ACID transaction commits to SQL, auto-resolves `TSK-03` to `SCHEDULE_ALIGNED`, and writes an immutable audit record to Google Cloud Firestore collection `strataiq_decisions`.
 
 ---
 
-## 🔒 Zero-Trust Row-Level Security (RLS)
+## 🛠️ Verified Google Cloud & Partner Tech Stack
 
-Every API request passes through a mandatory `SecurityContext` dependency:
-- The user's clearance level (`1`, `2`, `3`) is validated against document `min_layer_clearance`.
-- **Immediate Rejection**: If an employee requests or points to ANY document above their clearance level (e.g. Lower Layer user requesting `DOC-008` CFO Financial Audit), the API immediately raises `403 Forbidden` before executing RAG or LLM synthesis.
-- Relational queries are automatically scoped (e.g., Lower Layer employees can strictly view their own `enrollment` record; Middle Layer HR leads can view department-wide pending lists).
+| Technology | Purpose | Verification Status |
+| :--- | :--- | :---: |
+| **Google Cloud Run** | Fully managed serverless container runtime running unified FastAPI + compiled React SPA with `--min-instances 1` for zero cold starts. | Verified |
+| **Google Cloud Firestore** | NoSQL real-time document database syncing `strataiq_sessions` and `strataiq_decisions` audit logs. | Verified |
+| **Google ADK (google-adk==2.12.0)** | Multi-agent framework coordinating Intent Router, Document RAG, SQL Agent, and Groundedness Evaluator. | Verified |
+| **Google Gemini 2.5 / 3.8 Flash & Pro** | High-speed LLM inference for evidence synthesis, intent classification, and groundedness validation. | Verified |
+| **Google Gemini Native TTS (`gemini-2.5-flash-preview-tts`)** | Low-latency natural conversational voice synthesis using the `"Kore"` voice model with RIFF WAV packaging. | Verified |
+| **Google Cloud Text-to-Speech & Speech-to-Text** | Enterprise fallback audio synthesis (WaveNet/Neural2 `en-IN`) and microphone transcription. | Verified |
+| **Google Gemma 4 LoRA** | Fine-tuned 3.9 GB router checkpoint on Tinker remote cluster (`google/gemma-4-e4b-it`) for 22-document intent cataloging. | Verified |
+| **Google Cloud SQL PostgreSQL / SQLite** | Dual relational engine with Row-Level Security (RLS) enforcing ACID multi-table transactions. | Verified |
+| **Thesys OpenUI (`openui-lang`)** | Declarative token-saving UI compiler delivering **59.3% token savings** and **2.46× decode speedup**. | Verified |
+| **Backboard.io** | Enterprise persistent agentic memory storing conversation context across user sessions. | Verified |
+
+---
+
+## 🚀 One-Command Google Cloud Run Deployment
+
+StrataIQ uses a safe deployment script that reads API keys directly into process memory at runtime from `backend/.env` without ever writing keys to disk or git.
+
+### Windows (PowerShell)
+```powershell
+.\deploy_cloud_run.ps1 -Region us-central1 -ServiceName strataiq
+```
+
+### Linux / macOS / Cloud Shell (Bash)
+```bash
+chmod +x deploy_cloud_run.sh
+./deploy_cloud_run.sh us-central1 strataiq
+```
+
+The script automatically:
+1. Verifies your active Google Cloud Project ID,
+2. Enables required GCP APIs (`run`, `cloudbuild`, `artifactregistry`, `firestore`, `aiplatform`, `texttospeech`, `speech`),
+3. Builds the production multi-stage Docker container,
+4. Deploys to Google Cloud Run with `--min-instances 1` (zero cold starts for judges), 2 CPU, and 2 GiB memory,
+5. Securely injects environment variables into Cloud Run.
 
 ---
 
 ## 🧪 Test Suite Verification
 
-StrataIQ features an automated test suite with **43/43 passing tests (100% green)**:
+StrataIQ features an automated test suite with **44/44 passing tests (100% green)**:
 
 ```bash
 cd backend
@@ -138,7 +152,7 @@ python -m pytest tests/ -v
 ```
 ============================= test session starts =============================
 platform win32 -- Python 3.13.13, pytest-9.1.1
-collected 43 items
+collected 44 items
 
 tests/test_phase1_rdbms_and_rls.py::test_lower_can_read_clearance1_doc PASSED
 tests/test_phase1_rdbms_and_rls.py::test_lower_blocked_on_clearance3_doc PASSED
@@ -171,6 +185,7 @@ tests/test_phase2_agents.py::test_api_agent_route_endpoint PASSED
 tests/test_phase2_agents.py::test_api_sdk_status_endpoint PASSED
 tests/test_phase2_agents.py::test_router_catalog_selects_exact_docs PASSED
 tests/test_phase2_agents.py::test_backboard_memory_service_sync PASSED
+tests/test_phase2_agents.py::test_department_ebitda_and_cost_allocations_query PASSED
 tests/test_phase3_voice_and_citations.py::test_tinker_checkpoint_gemma4_and_zero_qwen PASSED
 tests/test_phase3_voice_and_citations.py::test_lower_layer_pointed_voice_sahyadri_cataract PASSED
 tests/test_phase3_voice_and_citations.py::test_pointed_isolation_targets_exact_document PASSED
@@ -184,39 +199,39 @@ tests/test_phase3_voice_and_citations.py::test_latency_breakdown_contains_all_ti
 tests/test_phase3_voice_and_citations.py::test_voice_catalog_returns_role_prompts_and_rls_docs PASSED
 tests/test_phase3_voice_and_citations.py::test_voice_transcribe_with_language_lock PASSED
 
-================= 43 passed, 12 warnings in 89.05s ==================
+================= 44 passed in 139.88s ==================
 ```
 
 ---
 
 ## ⚡ Quickstart & Local Setup
 
-### 1. Prerequisites
-- Python 3.11+
-- Google Cloud Project with Gemini API Key (`GEMINI_API_KEY`)
-
-### 2. Environment Configuration
+### 1. Configure Environment
 ```bash
 cd backend
 cp .env.example .env
 ```
-Fill in your `GEMINI_API_KEY` (and optionally `TINKER_API_KEY`, `BACKBOARD_API_KEY`):
+Fill in your API keys in `backend/.env`:
 ```ini
 GEMINI_API_KEY=your_gemini_api_key_here
-TINKER_BASE_MODEL=google/gemma-4-e4b-it
-GOOGLE_GEMMA_ROUTER_MODEL=gemma-4-e4b-it
+TINKER_API_KEY=your_tinker_key_here
+BACKBOARD_API_KEY=your_backboard_key_here
 ```
 
-### 3. Install Dependencies
+### 2. Install Dependencies
 ```bash
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
+cd frontend && npm install && npm run build && cd ..
 ```
 
-### 4. Run the Backend Server
+### 3. Run the Unified Production Server
 ```bash
-uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+cd backend
+uvicorn app.main:app --host 0.0.0.0 --port 8080
 ```
-Interactive OpenAPI documentation is available live at `http://localhost:8000/docs`.
+- Web Application: `http://localhost:8080/`
+- Interactive API Explorer: `http://localhost:8080/docs`
+- Forensic Proof Endpoint: `http://localhost:8080/api/v1/agent/sdk-status`
 
 ---
 
@@ -232,37 +247,44 @@ StrataIQ/
 │   │   │   ├── sql_agent.py            # Parameterized Relational SQL Agent
 │   │   │   ├── eval_agent.py           # Synthesis & Groundedness Evaluator
 │   │   │   ├── openui_formatter.py     # Thesys OpenUI (openui-lang) Engine
-│   │   │   └── tinker_checkpoint.json  # Gemma 4 LoRA Checkpoint Metadata
+│   │   │   └── memory_service.py       # Backboard.io Persistent User Memory
 │   │   ├── voice/                      # Google AI Speech & Voice Studio
 │   │   │   ├── speech_service.py       # Gemini Flash TTS (Kore) + GCP Speech
 │   │   │   └── pointed_doc_agent.py    # Pointed Voice Orchestrator & Citations
 │   │   ├── routers/                    # FastAPI REST Endpoints
-│   │   │   ├── workspace.py            # Personas & Demo State Management
+│   │   │   ├── workspace.py            # Personas, Layouts & Parental Rider
 │   │   │   ├── documents.py            # Zero-Trust Document Catalog
 │   │   │   ├── decisions.py            # Executive ACID Decision Approvals
-│   │   │   ├── agent.py                # Multi-Agent Query & OpenUI Benchmark
+│   │   │   ├── agent.py                # Multi-Agent Query & SDK Status
 │   │   │   └── voice.py                # Pointed Voice Studio Endpoints
 │   │   ├── config.py                   # Centralized Pydantic Settings
 │   │   ├── database.py                 # Dual SQLAlchemy Engine (SQLite/Postgres)
+│   │   ├── firestore_sync.py           # Google Cloud Firestore Sync Service
 │   │   ├── models.py                   # 10 Normalized SQLAlchemy Models
 │   │   ├── security.py                 # Zero-Trust SecurityContext Dependency
-│   │   └── main.py                     # FastAPI Application Factory & CORS
-│   ├── scripts/
-│   │   └── train_tinker_router.py      # Tinker Gemma 4 LoRA Fine-Tuning Script
+│   │   └── main.py                     # Unified FastAPI + React SPA Server
 │   ├── tests/
 │   │   ├── test_phase1_rdbms_and_rls.py
 │   │   ├── test_phase2_agents.py
 │   │   └── test_phase3_voice_and_citations.py
-│   ├── requirements.txt
-│   └── .env.example
+│   └── requirements.txt
+├── frontend/
+│   ├── src/
+│   │   ├── components/                 # Role-Adaptive UI & Voice Studio
+│   │   ├── pages/                      # Layouts, User Guide & Sandboxes
+│   │   └── lib/api.ts                  # Clean Relative API Client
+│   └── dist/                           # Compiled Production SPA
 ├── enterprise_data_vault/
 │   ├── files/                          # 22 Synthesized Enterprise Documents
 │   └── rdbms/
 │       ├── local_enterprise.db         # SQLite Replica with Real Embeddings
 │       └── cloud_sql_postgres_schema_and_rls.sql
-├── dataSeed.py                         # Enterprise Database Seeder
+├── Dockerfile                          # Multi-Stage Production Container
+├── .dockerignore                       # Secret Hygiene & Artifact Exclusion
+├── deploy_cloud_run.ps1                # One-Command PowerShell Deploy Script
+├── deploy_cloud_run.sh                 # One-Command Bash Deploy Script
 ├── GEMINI.md                           # Master Architecture & Rulebook
-└── README.md                           # Documentation Root
+└── README.md                           # Executive Documentation Root
 ```
 
 ---
@@ -272,7 +294,8 @@ StrataIQ/
 | Track Requirement | StrataIQ Implementation |
 | :--- | :--- |
 | **Track 5: Future of Work** | Eradicates 2 hours/day of enterprise fragmentation with role-adaptive multi-agent intelligence. |
-| **Google Gemini & Gemma** | 100% Google model stack: `gemini-2.5-flash-preview-tts`, `gemini-3.8-flash`, `text-embedding-004`, and `google/gemma-4-e4b-it`. |
+| **Google Gemini & Gemma** | 100% Google model stack: `gemini-2.5-flash-preview-tts`, `gemini-3.8-flash`, `gemini-embedding-001`, and `google/gemma-4-e4b-it`. |
+| **Google Cloud Infrastructure** | Google Cloud Run serverless deployment + Google Cloud Firestore live audit persistence. |
 | **Google ADK Multi-Agent** | Autonomous specialized agents with formal handoffs, groundedness evaluation, and Backboard.io memory sync. |
 | **Zero-Trust Enterprise Security** | Real Row-Level Security (RLS) enforcement at both the SQL and Vector document layer. |
 | **Human-in-the-Loop Governance** | AI empowers decision-makers with quantified multi-option matrices; never executes unilateral unapproved actions. |

@@ -63,12 +63,15 @@ function Outcome({ title, children }: { title: string; children: ReactNode }) {
   )
 }
 
-function JumpButton({ view, children }: { view: View; children: ReactNode }) {
-  const { go } = useSession()
+function JumpButton({ view, personaId, children }: { view?: View; personaId?: string; children: ReactNode }) {
+  const { go, switchPersona } = useSession()
   return (
     <button
-      onClick={() => go(view)}
-      className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+      onClick={() => {
+        if (personaId) switchPersona(personaId)
+        if (view) go(view)
+      }}
+      className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:opacity-90 hover:shadow-md"
     >
       {children}
     </button>
@@ -118,6 +121,10 @@ const SPREADS: Spread[] = [
           No passwords and no logging in and out. Use the avatar buttons at the very top of the screen to instantly step into someone
           else&apos;s shoes - the same question can have a different answer depending on who is asking.
         </p>
+        <div className="mt-6 flex flex-wrap gap-2">
+          <JumpButton view="overview" personaId="USR-LOW-ENG-005">🚀 Try Step 1: As Naman (Engineer)</JumpButton>
+          <JumpButton view="overview" personaId="USR-UPPER-FIN-001">As Arvind (CFO)</JumpButton>
+        </div>
       </>
     ),
     right: (
@@ -139,7 +146,7 @@ const SPREADS: Spread[] = [
           cited and scoped to your clearance.
         </p>
         <div className="mt-6">
-          <JumpButton view="talk">Open Talk to Docs</JumpButton>
+          <JumpButton view="talk" personaId="USR-LOW-ENG-005">🚀 Try Step 2: Talk with Documents as Naman</JumpButton>
         </div>
       </>
     ),
@@ -170,7 +177,7 @@ const SPREADS: Spread[] = [
           StrataIQ applies Zero-Trust access to every document and every query. What you can see depends on your role - not on what you ask for.
         </p>
         <div className="mt-6">
-          <JumpButton view="documents">Browse Documents</JumpButton>
+          <JumpButton view="documents" personaId="USR-LOW-ENG-005">🚀 Try Step 3: Test Security Lock on DOC-008</JumpButton>
         </div>
       </>
     ),
@@ -200,8 +207,9 @@ const SPREADS: Spread[] = [
         <p className="mt-4 text-[0.95rem] leading-relaxed ug-muted">
           One decision, three people. Watch a problem found by HR get fixed by the CFO - and see the result flow back to HR without anyone sending an email.
         </p>
-        <div className="mt-6">
-          <JumpButton view="overview">Go to Overview</JumpButton>
+        <div className="mt-6 flex flex-wrap gap-2">
+          <JumpButton view="overview" personaId="USR-MID-HR-003">🚀 Try Step 4: Open HR War Room (Priya)</JumpButton>
+          <JumpButton view="overview" personaId="USR-UPPER-FIN-001">Approve Option B (CFO Arvind)</JumpButton>
         </div>
       </>
     ),
