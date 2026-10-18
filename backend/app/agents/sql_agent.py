@@ -24,6 +24,13 @@ from typing import Any, Optional
 from sqlalchemy import func, text
 from sqlalchemy.orm import Session
 
+from app.agents.dept_financials import (
+    RLS_RESTRICTION_NOTICE,
+    ebitda_options,
+    inr,
+    is_department_financial_query,
+    load_department_ledger,
+)
 from app.config import get_settings
 from app.database import SecurityContext
 from app.models import (
@@ -86,6 +93,11 @@ class RelationalSQLAgent:
         execute the appropriate parameterized SQL query, and return structured SQLResult.
         """
         q_lower = query.lower()
+
+        # 0. Department-level EBITDA / cost allocation (checked first so every clearance
+        #    gets either the full ledger or an explicit Zero-Trust RLS notice)
+        if is_department_financial_query(query):
+            return self._query_department_financials(ctx, db)
 
         # 1. Lower Layer Personal Queries (my enrollment, my status, my copay, my claim)
         if ctx.clearance_level == 1 or any(k in q_lower for k in ["my status", "my enrollment", "my copay", "my deduction", "my claim", "am i enrolled"]):
@@ -467,6 +479,87 @@ class RelationalSQLAgent:
             row_count=len(rows),
         )
 
+    # ── 5b. Department-level EBITDA & Cost Allocation ────────────────────────────
+
+    def _query_department_financials(self, ctx: SecurityContext, db: Session) -> SQLResult:
+        """
+        Department cost allocation ledger (DOC-005) joined with departments.cost_center_code
+        and DEC-2026-001 EBITDA options (DOC-008). Full figures require Clearance 3.
+        """
+        ledger = load_department_ledger(db)
+        depts = [r for r in ledger if r["dept_id"] != "TOTAL"]
+        total = next(r for r in ledger if r["dept_id"] == "TOTAL")
+
+        sql_str = (
+            "SELECT d.dept_id, d.dept_name, d.cost_center_code, l.headcount, l.legacy_2025_premium_inr, "
+            "l.novashield_2026_premium_inr, l.parental_rider_variance_inr, l.legacy_pro_rata_refund_inr, "
+            "l.net_budget_gap_inr FROM departments d JOIN "
+            "[05_Q3_Q4_Insurance_Premium_Cost_Impact_Ledger.csv] l ON d.dept_id = l.dept_id; "
+            "SELECT decision_id, selected_option, financial_impact FROM decision_matrix_logs "
+            "WHERE decision_id = 'DEC-2026-001';"
+        )
+
+        if ctx.clearance_level < 3:
+            rows = [
+                {
+                    "dept_id": r["dept_id"],
+                    "department_name": r["department_name"],
+                    "cost_center_code": r["cost_center_code"],
+                    "headcount": r["headcount"],
+                }
+                for r in depts
+            ]
+            headcounts = "; ".join(
+                f"{r['department_name']} ({r['cost_center_code']}): {r['headcount']} employees" for r in rows
+            )
+            return SQLResult(
+                query_type="DEPARTMENT_FINANCIAL_RESTRICTED",
+                sql_query=sql_str.split(";")[0] + "; -- financial columns BLOCKED BY ROW-LEVEL SECURITY",
+                rows=rows,
+                summary=(
+                    f"{RLS_RESTRICTION_NOTICE} Department headcounts and cost centers "
+                    f"({total['headcount']} employees): {headcounts}."
+                ),
+                metrics={
+                    "rls_restricted": True,
+                    "rls_restriction_notice": RLS_RESTRICTION_NOTICE,
+                    "required_clearance_level": 3,
+                    "restricted_doc_ids": ["DOC-005", "DOC-008"],
+                    "department_count": len(rows),
+                    "total_employees": total["headcount"],
+                },
+                row_count=len(rows),
+            )
+
+        eb = ebitda_options(total)
+        dec = db.query(DecisionMatrixLog).filter(DecisionMatrixLog.decision_id == "DEC-2026-001").first()
+        summary = (
+            f"Department-level cost allocation under the NovaShield MSA: 2025 LegacyCare base "
+            f"INR {inr(total['legacy_2025_premium_inr'])} -> 2026 NovaShield INR {inr(total['novashield_2026_premium_inr'])} "
+            f"across {len(depts)} departments ({total['headcount']} employees); gross parental variance "
+            f"INR {inr(total['parental_rider_variance_inr'])}, LegacyCare refund INR {inr(total['legacy_pro_rata_refund_inr'])}, "
+            f"net unfunded gap INR {inr(total['net_budget_gap_inr'])}. EBITDA impact: Option A "
+            f"-INR {inr(-eb['option_a_ebitda_impact_inr'])}; Option B (Recommended) INR 0."
+        )
+        return SQLResult(
+            query_type="DEPARTMENT_FINANCIAL_ALLOCATION",
+            sql_query=sql_str,
+            rows=[*depts, total],
+            summary=summary,
+            metrics={
+                "rls_restricted": False,
+                "department_financials": depts,
+                "company_total": total,
+                "decision_id": dec.decision_id if dec else "DEC-2026-001",
+                "decision_status": dec.status if dec else "PENDING_EXECUTIVE_APPROVAL",
+                "recommended_option": "Option B",
+                "parental_premium_variance_inr": float(total["parental_rider_variance_inr"]),
+                "legacycare_refund_inr": float(total["legacy_pro_rata_refund_inr"]),
+                **eb,
+            },
+            row_count=len(depts) + 1,
+        )
+
     # ── 6. Department / Transition Overview Fallbacks ────────────────────────────
 
     def _query_department_metrics(self, ctx: SecurityContext, db: Session) -> SQLResult:
@@ -479,7 +572,17 @@ class RelationalSQLAgent:
         )
         rows = [{"dept_id": c[0], "dept_name": c[1], "employee_count": c[2]} for c in counts]
 
-        summary = f"Organization breakdown across {len(rows)} departments with 500 total employees."
+        cost_centers = {d.dept_id: d.cost_center_code for d in db.query(Department).all()}
+        for r in rows:
+            r["cost_center_code"] = cost_centers.get(r["dept_id"])
+        total_employees = sum(r["employee_count"] for r in rows)
+        breakdown = "; ".join(
+            f"{r['dept_name']} ({r['cost_center_code']}): {r['employee_count']} employees" for r in rows
+        )
+        summary = (
+            f"Department headcount and cost centers across {len(rows)} departments "
+            f"({total_employees} employees total): {breakdown}."
+        )
         sql_str = "SELECT d.dept_id, d.dept_name, COUNT(u.user_id) FROM departments d JOIN users u ON d.dept_id = u.dept_id GROUP BY d.dept_id;"
 
         return SQLResult(

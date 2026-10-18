@@ -35,6 +35,9 @@ class Settings:
     # Backboard.io persistent user memory SDK key
     BACKBOARD_API_KEY: str = os.getenv("BACKBOARD_API_KEY", "")
 
+    # Google Cloud Project ID for Cloud Run / Firestore
+    GOOGLE_CLOUD_PROJECT: str = os.getenv("GOOGLE_CLOUD_PROJECT", os.getenv("GCP_PROJECT", ""))
+
     def __init__(self) -> None:
         # Automatically mirror GEMINI_API_KEY to GOOGLE_API_KEY for google-adk
         if self.GEMINI_API_KEY and not os.environ.get("GOOGLE_API_KEY"):

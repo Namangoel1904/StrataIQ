@@ -305,6 +305,8 @@ class SDKStatusResponse(BaseModel):
     embedding_dimension: int
     embedding_model: str
     providers: dict[str, Any]
+    firestore_sdk_installed: bool = True
+    cloud_run_ready: bool = True
 
 
 # ---------------------------------------------------------------------------

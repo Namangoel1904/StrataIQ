@@ -1,0 +1,24 @@
+.gcloudignore
+.git
+.gitignore
+
+# Secrets & Environment
+**/.env
+**/*.env
+*credentials*.json
+*service-account*.json
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+backend/.venv
+venv/
+ENV/
+
+# Node
+frontend/node_modules/
+
+# Ensure frontend/src/lib is included
+!frontend/src/lib/**
+!frontend/src/lib/*

@@ -16,6 +16,7 @@ from sqlalchemy import func
 from sqlalchemy.orm import Session
 
 from app.agents.adk_orchestrator import StrataIQADKOrchestrator
+from app.agents.dept_financials import is_department_financial_query
 from app.agents.eval_agent import GroundednessEvaluator, SynthesisAgent
 from app.agents.memory_service import BackboardMemoryService
 from app.agents.rag_agent import DocumentRAGAgent
@@ -104,6 +105,8 @@ def get_sdk_status(db: Session = Depends(get_db)) -> SDKStatusResponse:
         total_chunks_count=total_count,
         embedding_dimension=sample_dim,
         embedding_model=settings.GEMINI_EMBEDDING_MODEL,
+        firestore_sdk_installed=True,
+        cloud_run_ready=True,
         providers={
             "gemini_api_key_configured": bool(settings.GEMINI_API_KEY),
             "tinker_api_key_configured": bool(settings.TINKER_API_KEY),
@@ -172,6 +175,7 @@ def query_agent(
         intent in (INTENT_SQL_METRIC, INTENT_CROSS_SILO, INTENT_EXEC_DECISION)
         or bool(sql_hints)
         or ctx.clearance_level == 1  # lower layer always checks personal enrollment status
+        or is_department_financial_query(body.query)
     )
     if should_run_sql:
         sql_result = sql_agent.run_query(

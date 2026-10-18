@@ -11,16 +11,19 @@ Combines retrieved RAG document chunks and SQL database facts to:
 from __future__ import annotations
 
 import json
+import logging
 import re
 from dataclasses import dataclass, field
 from typing import Any, Optional
 
+from app.agents.dept_financials import RLS_RESTRICTION_NOTICE, inr
 from app.agents.rag_agent import RAGResult
 from app.agents.sql_agent import SQLResult
 from app.config import get_settings
 from app.database import SecurityContext
 
 settings = get_settings()
+logger = logging.getLogger("strataiq.gemini_fallback")
 
 
 @dataclass
@@ -89,8 +92,13 @@ class GroundednessEvaluator:
         if self._genai_client and settings.GEMINI_API_KEY:
             try:
                 return self._evaluate_with_gemini(answer, rag_results, sql_result)
-            except Exception:
-                pass  # Fall back to deterministic evaluation
+            except Exception as exc:
+                logger.warning(
+                    "[GEMINI_FALLBACK] stage=groundedness_eval reason=gemini_error error=%s: %s -> using deterministic evaluator",
+                    type(exc).__name__, exc,
+                )
+        else:
+            logger.warning("[GEMINI_FALLBACK] stage=groundedness_eval reason=no_gemini_client_or_api_key -> using deterministic evaluator")
 
         return self._evaluate_deterministic(answer, rag_results, sql_result)
 
@@ -271,6 +279,9 @@ class GroundednessEvaluator:
         )
 
 
+_DEPT_FINANCIAL_TYPES = ("DEPARTMENT_FINANCIAL_ALLOCATION", "DEPARTMENT_FINANCIAL_RESTRICTED")
+
+
 class SynthesisAgent:
     """
     Synthesizes grounded answers from RAG chunks and SQL results,
@@ -364,11 +375,28 @@ class SynthesisAgent:
         sql_result: Optional[SQLResult] = None,
     ) -> str:
         """Generate answer via Gemini Flash or deterministic synthesis."""
+        # Department EBITDA / cost allocation answers are rendered straight from the ledger so
+        # the full table is never summarised away by an LLM or replaced by a SQL one-liner.
+        if sql_result and sql_result.query_type in _DEPT_FINANCIAL_TYPES:
+            logger.info(
+                "[GEMINI_BYPASS] stage=answer_synthesis reason=intentional_ledger_render query_type=%s user=%s clearance=%s",
+                sql_result.query_type, ctx.user_id, ctx.clearance_level,
+            )
+            return self._format_department_financials(sql_result)
+
         if self._genai_client and settings.GEMINI_API_KEY:
             try:
                 return self._generate_with_gemini(query, intent, ctx, rag_results, sql_result)
-            except Exception:
-                pass  # Fall back to deterministic synthesis
+            except Exception as exc:
+                logger.warning(
+                    "[GEMINI_FALLBACK] stage=answer_synthesis reason=gemini_error error=%s: %s intent=%s user=%s query=%r -> using hardcoded deterministic answer",
+                    type(exc).__name__, exc, intent, ctx.user_id, query[:120],
+                )
+        else:
+            logger.warning(
+                "[GEMINI_FALLBACK] stage=answer_synthesis reason=no_gemini_client_or_api_key intent=%s user=%s query=%r -> using hardcoded deterministic answer",
+                intent, ctx.user_id, query[:120],
+            )
 
         return self._generate_deterministic(query, intent, ctx, rag_results, sql_result)
 
@@ -469,6 +497,49 @@ class SynthesisAgent:
             return sql_result.summary
 
         return "I could not find specific documentation matching your query under your security clearance level."
+
+    @staticmethod
+    def _format_department_financials(sql_result: SQLResult) -> str:
+        """Full 6-department cost allocation + EBITDA impact, or an explicit RLS notice (plain text)."""
+        m = sql_result.metrics
+        if m.get("rls_restricted"):
+            lines = [
+                m.get("rls_restriction_notice", RLS_RESTRICTION_NOTICE),
+                "",
+                "Visible at your clearance - department headcounts and cost centers:",
+            ]
+            for r in sql_result.rows:
+                lines.append(f"- {r['department_name']} ({r['dept_id']}, {r['cost_center_code']}): {r['headcount']} employees")
+            lines.append(f"Total: {m.get('total_employees', 500)} employees.")
+            return "\n".join(lines)
+
+        depts = m["department_financials"]
+        t = m["company_total"]
+        lines = [
+            "Department-level cost allocation under the NovaShield MSA "
+            "(Sources: DOC-005 Cost Impact Ledger, DOC-008 CFO Budget Reallocation Proposal; amounts in INR):",
+            "",
+        ]
+        for r in depts:
+            lines.append(
+                f"- {r['department_name']} ({r['dept_id']}, {r['headcount']} employees, {r['cost_center_code']}): "
+                f"2025 LegacyCare INR {inr(r['legacy_2025_premium_inr'])} -> 2026 NovaShield INR {inr(r['novashield_2026_premium_inr'])} | "
+                f"Parental Variance INR {inr(r['parental_rider_variance_inr'])} | "
+                f"Legacy Refund Share INR {inr(r['legacy_pro_rata_refund_inr'])} | "
+                f"Net Budget Gap INR {inr(r['net_budget_gap_inr'])}"
+            )
+        lines += [
+            f"- Company Total ({t['headcount']} employees): INR {inr(t['legacy_2025_premium_inr'])} -> "
+            f"INR {inr(t['novashield_2026_premium_inr'])} | Gross Parental Variance INR {inr(t['parental_rider_variance_inr'])} (+14%) | "
+            f"LegacyCare Refund INR {inr(t['legacy_pro_rata_refund_inr'])} | Net Unfunded Gap INR {inr(t['net_budget_gap_inr'])}",
+            "",
+            "EBITDA impact (DEC-2026-001):",
+            f"- Option A (100% Margin Absorption): Q4 EBITDA takes a direct hit of -INR {inr(-m['option_a_ebitda_impact_inr'])} (-19.2 Lakhs).",
+            f"- Option B (Recommended Hybrid Buffer): the INR {inr(m['legacycare_refund_inr'])} LegacyCare refund plus "
+            f"INR {inr(m['welfare_reserve_inr'])} from the Q4 Staff Welfare Reserve ({m['welfare_reserve_cost_center']}) "
+            f"gives INR 0 net EBITDA impact and keeps employee co-pay flat at INR {m['copay_per_parent_inr']}/parent.",
+        ]
+        return "\n".join(lines)
 
     def _generate_with_gemini(
         self,

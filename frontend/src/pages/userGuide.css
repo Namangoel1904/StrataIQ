@@ -1,0 +1,309 @@
+/* User Guide flipping book — page-turn mechanic adapted from user-guide-page-ref */
+.ug-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 2200px;
+  padding: 0 clamp(36px, 5vw, 64px) 56px;
+}
+/* glass pedestal the book floats above */
+.ug-stage::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  bottom: 0;
+  width: min(46%, 440px);
+  height: 74px;
+  transform: translateX(-50%);
+  clip-path: polygon(9% 0, 91% 0, 100% 30%, 100% 100%, 0 100%, 0 30%);
+  background:
+    linear-gradient(90deg, transparent 49.7%, rgba(255, 255, 255, 0.55) 50%, transparent 50.3%),
+    linear-gradient(180deg, #ffffff 0 30%, #e6e7eb 30% 100%);
+  opacity: 0.95;
+}
+.dark .ug-stage::before {
+  background:
+    linear-gradient(90deg, transparent 49.7%, rgba(255, 255, 255, 0.4) 50%, transparent 50.3%),
+    linear-gradient(180deg, #3a3d48 0 30%, #22242d 30% 100%);
+}
+.ug-book {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 848px);
+  height: clamp(400px, 52.8vh, 512px);
+  perspective: 2200px;
+  filter: drop-shadow(0 16px 24px rgba(170, 172, 180, 0.28)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+  animation: ug-levitate 6s ease-in-out infinite;
+}
+/* stacked glass slabs peeking out behind both outer edges + below: book thickness */
+.ug-book::before {
+  content: '';
+  position: absolute;
+  inset: 6px 0 0;
+  z-index: -1;
+  border-radius: 1.25rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(170, 172, 180, 0.6));
+  border: 1px solid rgba(150, 154, 166, 0.55);
+  box-shadow:
+    0 4px 0 -1px rgba(255, 255, 255, 0.85),
+    0 6px 0 -1px rgba(255, 255, 255, 0.75),
+    0 10px 0 -2px rgba(255, 255, 255, 0.8),
+    0 12px 0 -2px rgba(170, 172, 180, 0.75),
+    0 16px 0 -3px rgba(170, 172, 180, 0.8),
+    -9px 3px 0 -3px rgba(255, 255, 255, 0.7),
+    -10px 3px 0 -3px rgba(255, 255, 255, 0.8),
+    -18px 6px 0 -6px rgba(255, 255, 255, 0.55),
+    -19px 6px 0 -6px rgba(170, 172, 180, 0.7),
+    9px 3px 0 -3px rgba(255, 255, 255, 0.7),
+    10px 3px 0 -3px rgba(255, 255, 255, 0.8),
+    18px 6px 0 -6px rgba(255, 255, 255, 0.55),
+    19px 6px 0 -6px rgba(170, 172, 180, 0.7);
+}
+.dark .ug-book::before {
+  background: linear-gradient(180deg, rgba(170, 172, 180, 0.6), rgba(28, 30, 38, 0.85));
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 4px 0 -1px rgba(255, 255, 255, 0.4),
+    0 6px 0 -1px rgba(28, 30, 38, 0.85),
+    0 10px 0 -2px rgba(255, 255, 255, 0.35),
+    0 12px 0 -2px rgba(28, 30, 38, 0.9),
+    0 16px 0 -3px rgba(28, 30, 38, 0.95),
+    -9px 3px 0 -3px rgba(255, 255, 255, 0.35),
+    -10px 3px 0 -3px rgba(28, 30, 38, 0.85),
+    -18px 6px 0 -6px rgba(255, 255, 255, 0.28),
+    -19px 6px 0 -6px rgba(28, 30, 38, 0.8),
+    9px 3px 0 -3px rgba(255, 255, 255, 0.35),
+    10px 3px 0 -3px rgba(28, 30, 38, 0.85),
+    18px 6px 0 -6px rgba(255, 255, 255, 0.28),
+    19px 6px 0 -6px rgba(28, 30, 38, 0.8);
+}
+/* soft blue shadow on the "floor" that breathes with the float */
+.ug-book::after {
+  content: '';
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: -34px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(170, 172, 180, 0.4), transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+  animation: ug-floor 6s ease-in-out infinite;
+}
+@keyframes ug-levitate {
+  0%, 100% { transform: translateY(-6px); }
+  50% { transform: translateY(-18px); }
+}
+@keyframes ug-floor {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(0.88); opacity: 0.55; }
+}
+.ug-spread {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  transform-style: preserve-3d;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: var(--ug-glass);
+  border: 2px solid var(--ug-edge);
+  box-shadow: inset 0 1px 0 var(--ug-highlight), inset 0 0 0 3px var(--ug-rim), inset 0 0 60px var(--ug-glow);
+  -webkit-backdrop-filter: blur(22px) saturate(1.3);
+  backdrop-filter: blur(22px) saturate(1.3);
+}
+.ug-half {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+/* soft light sheen across each glass page */
+.ug-half::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 18%, var(--ug-sheen) 24%, transparent 34%, transparent 52%, var(--ug-sheen) 56%, transparent 63%),
+    radial-gradient(120% 70% at 20% 0%, var(--ug-sheen), transparent 60%);
+}
+.ug-half-left {
+  background: linear-gradient(90deg, transparent 70%, var(--ug-shade));
+}
+.ug-half-right {
+  background: linear-gradient(270deg, transparent 70%, var(--ug-shade));
+}
+.ug-content {
+  height: 100%;
+  overflow-y: auto;
+  padding: clamp(22px, 3.2vw, 44px);
+}
+/* scale page text down in proportion to the smaller book */
+.ug-content > * {
+  zoom: 0.8;
+}
+.ug-gutter {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 22px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--ug-fold) 42%, var(--ug-rim) 50%, var(--ug-highlight) 56%, transparent);
+  pointer-events: none;
+}
+
+.ug-leaf {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+.ug-leaf.reverse {
+  left: 0;
+  transform-origin: right center;
+}
+.ug-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 70% at 20% 0%, var(--ug-sheen), transparent 60%),
+    var(--ug-leaf);
+  border: 1px solid var(--ug-edge);
+  box-shadow: inset 0 1px 0 var(--ug-highlight), inset 0 0 50px var(--ug-glow);
+  backface-visibility: hidden;
+}
+.ug-face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg, rgba(28, 30, 38, 0.55), rgba(28, 30, 38, 0.05) 35%, rgba(255, 255, 255, 0.35) 55%, rgba(28, 30, 38, 0.4));
+}
+.ug-leaf.reverse .ug-face::after {
+  transform: scaleX(-1);
+}
+.ug-leaf.turning .ug-face::after {
+  animation: ug-curl-shade 1000ms ease-in-out both;
+}
+.ug-face-front {
+  border-radius: 0 1.25rem 1.25rem 0;
+}
+.ug-face-back {
+  transform: rotateY(180deg);
+  border-radius: 1.25rem 0 0 1.25rem;
+}
+.ug-leaf.reverse .ug-face-front {
+  border-radius: 1.25rem 0 0 1.25rem;
+}
+.ug-leaf.reverse .ug-face-back {
+  border-radius: 0 1.25rem 1.25rem 0;
+}
+.ug-leaf.turning {
+  animation: ug-forward 1000ms cubic-bezier(0.45, 0.05, 0.25, 1) both;
+}
+.ug-leaf.turning.reverse {
+  animation-name: ug-backward;
+}
+/* the leaf lifts, bows (skew + tilt) mid-turn, then settles flat - like paper */
+@keyframes ug-forward {
+  0% { transform: translateZ(0) rotateY(0) rotateX(0) skewY(0); }
+  20% { transform: translateZ(24px) rotateY(-32deg) rotateX(2deg) skewY(-2deg); }
+  50% { transform: translateZ(46px) rotateY(-96deg) rotateX(5deg) skewY(3.5deg); box-shadow: -22px 12px 34px rgba(28, 30, 38, 0.32); }
+  78% { transform: translateZ(18px) rotateY(-150deg) rotateX(2deg) skewY(-1.5deg); }
+  100% { transform: translateZ(0) rotateY(-180deg) rotateX(0) skewY(0); box-shadow: none; }
+}
+@keyframes ug-backward {
+  0% { transform: translateZ(0) rotateY(0) rotateX(0) skewY(0); }
+  20% { transform: translateZ(24px) rotateY(32deg) rotateX(2deg) skewY(2deg); }
+  50% { transform: translateZ(46px) rotateY(96deg) rotateX(5deg) skewY(-3.5deg); box-shadow: 22px 12px 34px rgba(28, 30, 38, 0.32); }
+  78% { transform: translateZ(18px) rotateY(150deg) rotateX(2deg) skewY(1.5deg); }
+  100% { transform: translateZ(0) rotateY(180deg) rotateX(0) skewY(0); box-shadow: none; }
+}
+@keyframes ug-curl-shade {
+  0% { opacity: 0; }
+  45% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.ug-arrow {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  width: 44px;
+  height: 76px;
+  margin-top: -38px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+.ug-arrow:hover:not(:disabled) { opacity: 1; }
+.ug-arrow:disabled { opacity: 0.25; cursor: default; }
+.ug-arrow.prev { left: 0; }
+.ug-arrow.next { right: 0; }
+
+/* paper tokens follow the app theme */
+.ug-root {
+  --ug-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.24));
+  --ug-leaf: rgba(255, 255, 255, 0.92);
+  --ug-edge: rgba(255, 255, 255, 0.95);
+  --ug-outline: rgba(150, 154, 166, 0.45);
+  --ug-rim: rgba(255, 255, 255, 0.55);
+  --ug-highlight: rgba(255, 255, 255, 0.8);
+  --ug-glow: rgba(170, 172, 180, 0.16);
+  --ug-sheen: rgba(255, 255, 255, 0.6);
+  --ug-fold: rgba(28, 30, 38, 0.22);
+  --ug-shade: rgba(28, 30, 38, 0.14);
+  --ug-ink: #14161d;
+  --ug-muted: #565b69;
+  --ug-line: rgba(28, 30, 38, 0.16);
+  --ug-chip: rgba(255, 255, 255, 0.5);
+}
+.dark .ug-root {
+  --ug-glass: linear-gradient(135deg, rgba(170, 172, 180, 0.22), rgba(170, 172, 180, 0.08));
+  --ug-leaf: rgba(28, 30, 38, 0.93);
+  --ug-edge: rgba(255, 255, 255, 0.5);
+  --ug-rim: rgba(255, 255, 255, 0.28);
+  --ug-highlight: rgba(255, 255, 255, 0.28);
+  --ug-glow: rgba(170, 172, 180, 0.22);
+  --ug-sheen: rgba(255, 255, 255, 0.14);
+  --ug-fold: rgba(0, 0, 0, 0.45);
+  --ug-shade: rgba(0, 0, 0, 0.35);
+  --ug-ink: #eceef4;
+  --ug-muted: #9a9eab;
+  --ug-line: rgba(255, 255, 255, 0.12);
+  --ug-chip: rgba(255, 255, 255, 0.07);
+}
+.ug-root .ug-content { color: var(--ug-ink); }
+.ug-muted { color: var(--ug-muted); }
+.ug-chip-bg {
+  background: var(--ug-chip);
+  border: 1px solid var(--ug-edge);
+  box-shadow: inset 0 1px 0 var(--ug-highlight);
+}
+.ug-rule { border-color: var(--ug-line); }
+
+@media (max-width: 760px) {
+  .ug-book { height: 496px; }
+  .ug-content { padding: 16px; font-size: 0.82rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ug-book, .ug-book::after { animation: none; }
+  .ug-leaf.turning { animation-duration: 0.01ms !important; }
+}

@@ -18,6 +18,7 @@ from app.schemas import (
     DecisionsListResponse, DecisionMatrixItem, DecisionOption,
     ApproveDecisionRequest, ApproveDecisionResponse, MutatedTask,
 )
+from app.firestore_sync import firestore_service
 
 router = APIRouter()
 
@@ -173,6 +174,17 @@ def approve_decision(
         db.commit()
         db.refresh(dec)
         # ─────────────────────────────────────────────────────────────────────
+
+        # Sync executive decision approval to Google Cloud Firestore (graceful fallback if offline)
+        firestore_service.sync_executive_decision(
+            decision_id=dec.decision_id,
+            selected_option=dec.selected_option,
+            approver_id=ctx.user_id,
+            metadata={
+                "approver_name": ctx.full_name,
+                "tasks_mutated": [t.task_id for t in tasks_mutated],
+            },
+        )
 
     except Exception as exc:
         db.rollback()

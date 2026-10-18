@@ -25,6 +25,7 @@ from app.schemas import (
     ConflictAlert, UpperKPIs, MiddleKPIs, LowerKPIs,
     ConfirmParentalRiderResponse, ResetDemoStateResponse,
 )
+from app.firestore_sync import firestore_service
 
 router = APIRouter()
 
@@ -417,6 +418,18 @@ def confirm_parental_rider(
     enrollment.migration_status = "MIGRATED_TO_NOVASHIELD"
     db.commit()
     db.refresh(enrollment)
+
+    # Sync event to Google Cloud Firestore (graceful fallback if offline)
+    firestore_service.sync_user_session_event(
+        user_id=ctx.user_id,
+        layer_code=ctx.layer_code,
+        action="CONFIRM_PARENTAL_RIDER",
+        metadata={
+            "enrollment_id": enrollment.enrollment_id,
+            "policy_id": enrollment.policy_id,
+            "monthly_copay_deduction": enrollment.monthly_copay_deduction,
+        },
+    )
 
     return ConfirmParentalRiderResponse(
         message=(

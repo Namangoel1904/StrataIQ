@@ -127,6 +127,42 @@ class OpenUILangFormatter:
         pointed_doc_ids: Optional[list[str]],
     ) -> str:
         """Compact declarative openui-lang syntax tailored to layer & intent."""
+        # 0. Department EBITDA / cost allocation (full table, or RLS notice below Clearance 3)
+        if sql_metrics.get("rls_restricted"):
+            notice = str(sql_metrics.get("rls_restriction_notice", "")).replace('"', "'")
+            return (
+                f'header = Header(title="Department EBITDA & Cost Allocation", badge="Clearance {ctx.clearance_level} ({ctx.layer_code})")\n'
+                f'callout = Callout(type="danger", title="Zero-Trust RLS: Clearance Level 3 Required (DOC-005 / DOC-008)", text="{notice}")\n'
+                f'root = Stack([header, callout], spacing=4)'
+            )
+        if sql_metrics.get("department_financials"):
+            from app.agents.dept_financials import inr  # noqa: PLC0415
+            depts = sql_metrics["department_financials"]
+            tot = sql_metrics["company_total"]
+            gap = inr(tot["net_budget_gap_inr"])
+            rows = ",\n".join(
+                f'  ["{r["department_name"]}", "{r["cost_center_code"]}", "{r["headcount"]}", "INR {inr(r["legacy_2025_premium_inr"])}", '
+                f'"INR {inr(r["novashield_2026_premium_inr"])}", "INR {inr(r["parental_rider_variance_inr"])}", "INR {inr(r["net_budget_gap_inr"])}"]'
+                for r in depts
+            )
+            return (
+                f'header = Header(title="Department Cost Allocation & EBITDA: NovaShield MSA", badge="Clearance 3 (UPPER)")\n'
+                f'callout = Callout(type="warning", title="Net Unfunded Gap: INR {gap}", text="Option A hits Q4 EBITDA by -INR {gap}; Option B (Recommended) nets INR 0 using the LegacyCare refund plus Q4 Staff Welfare Reserve (CC-102).")\n'
+                f'dept_table = Table(headers=["Department", "Cost Center", "Employees", "2025 LegacyCare", "2026 NovaShield", "Parental Variance", "Net Budget Gap"], rows=[\n'
+                f'{rows},\n'
+                f'  ["Company Total", "-", "{tot["headcount"]}", "INR {inr(tot["legacy_2025_premium_inr"])}", "INR {inr(tot["novashield_2026_premium_inr"])}", "INR {inr(tot["parental_rider_variance_inr"])}", "INR {gap}"]\n'
+                f'])\n'
+                f'ebitda_table = Table(headers=["Option", "Q4 EBITDA Impact", "Funding"], rows=[\n'
+                f'  ["Option A", "-INR {gap}", "100% margin absorption"],\n'
+                f'  ["Option B (Recommended)", "INR 0", "INR {inr(tot["legacy_pro_rata_refund_inr"])} refund + INR {gap} welfare reserve (CC-102)"]\n'
+                f'])\n'
+                f'followups = FollowUpBlock(actions=[\n'
+                f'  ActionPill(label="Inspect Cost Ledger DOC-005", doc_id="DOC-005", variant="outline"),\n'
+                f'  ActionPill(label="Review CFO Proposal DOC-008", doc_id="DOC-008", variant="outline")\n'
+                f'])\n'
+                f'root = Stack([header, callout, dept_table, ebitda_table, followups], spacing=4)'
+            )
+
         # A. UPPER LAYER (Executive Decision / CFO Variance)
         if ctx.layer_code == "UPPER" or intent == "EXECUTIVE_DECISION":
             variance_l = round(sql_metrics.get("parental_premium_variance_inr", 3840000.0) / 100000, 1)

@@ -16,6 +16,7 @@ Takes a user query + SecurityContext and returns:
 from __future__ import annotations
 
 import json
+import logging
 import os
 from pathlib import Path
 import re
@@ -26,6 +27,7 @@ from app.config import get_settings
 from app.database import SecurityContext
 
 settings = get_settings()
+logger = logging.getLogger("strataiq.gemini_fallback")
 
 # Intent constants
 INTENT_DOC_QUERY = "DOC_QUERY"
@@ -176,15 +178,20 @@ class IntentRouter:
                 res = self._tinker_classify(query, ctx)
                 if res:
                     return res
-            except Exception:
-                pass  # Fall through to Gemini
+            except Exception as exc:
+                logger.warning("[ROUTER_FALLBACK] stage=tinker_router reason=error error=%s: %s -> trying Gemini router", type(exc).__name__, exc)
 
         # Tier 2: Live Gemini Flash Router
         if self._genai_client and settings.GEMINI_API_KEY:
             try:
                 return self._gemini_classify(query, ctx)
-            except Exception:
-                pass  # Fall through to deterministic
+            except Exception as exc:
+                logger.warning(
+                    "[GEMINI_FALLBACK] stage=intent_router reason=gemini_error error=%s: %s query=%r -> using deterministic keyword classifier",
+                    type(exc).__name__, exc, query[:120],
+                )
+        else:
+            logger.warning("[GEMINI_FALLBACK] stage=intent_router reason=no_gemini_client_or_api_key -> using deterministic keyword classifier")
 
         # Tier 3: Deterministic Rule Classifier
         return self._keyword_classify(query, ctx)
