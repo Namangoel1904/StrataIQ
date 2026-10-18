@@ -110,8 +110,8 @@ export default function Shell({ children }: { children: ReactNode }) {
   const me = boot.data?.user_profile
 
   return (
-    <div className="app-bg min-h-screen">
-      <div className="mx-auto max-w-[1760px] px-4 pb-24 pt-4 sm:px-6 lg:px-8">
+    <div className="app-bg shell-fit min-h-screen">
+      <div className="mx-auto max-w-[2300px] px-4 pb-24 pt-4 sm:px-6 lg:px-8">
         <header className="flex items-center justify-between gap-4 py-2">
           <Logo />
 
@@ -174,7 +174,7 @@ export default function Shell({ children }: { children: ReactNode }) {
         </nav>
 
         <div className="flex gap-5 pt-2">
-          <aside className="sticky top-5 hidden h-[calc(100vh-2.5rem)] shrink-0 flex-col items-center gap-3 lg:flex">
+          <aside className="sticky top-5 hidden h-[calc(100vh-2.5rem)] [.shell-fit_&]:h-[calc(100vh/var(--shell-zoom)-2.5rem)] shrink-0 flex-col items-center gap-3 lg:flex">
             {NAV.map((n) => {
               const Icon = n.icon
               const active = view === n.view

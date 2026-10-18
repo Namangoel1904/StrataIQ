@@ -303,3 +303,15 @@
 .dev-caret {
   animation: caret 0.6s steps(1) infinite;
 }
+
+/* ── Dashboard fit: render the shell at 75% so nothing is cropped at 100% browser zoom ── */
+.shell-fit {
+  --shell-zoom: 1;
+}
+@media (min-width: 1024px) {
+  .shell-fit {
+    --shell-zoom: 0.75;
+    zoom: var(--shell-zoom);
+    min-height: calc(100vh / var(--shell-zoom));
+  }
+}

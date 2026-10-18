@@ -124,7 +124,7 @@ export default function DevDeskToggle() {
         <div className="absolute inset-x-10 bottom-4 h-24 rounded-full bg-[radial-gradient(closest-side,rgba(255,170,60,0.38),transparent)] blur-md" />
         <svg
           viewBox="51 148 1168 962"
-          className="relative w-[9.5rem] sm:w-[12rem]"
+          className="relative w-[10.5rem] sm:w-[14rem]"
           style={{ imageRendering: 'pixelated', filter: 'drop-shadow(0 10px 14px rgba(0,0,0,0.35))' }}
           role="img"
           aria-hidden="true"
