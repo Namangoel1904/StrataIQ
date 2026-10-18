@@ -1,0 +1,305 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '@fontsource-variable/manrope';
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/700.css';
+@import '@fontsource-variable/jetbrains-mono';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── Design tokens (shadcn-compatible names) ───────────────────────────── */
+:root {
+  --background: #e8eaf0;
+  --foreground: #0b0b0f;
+  --card: #ffffff;
+  --card-foreground: #0b0b0f;
+  --muted: #eef0f6;
+  --muted-foreground: #6b7081;
+  --border: #dde1ec;
+  --primary: #0b0b0f;
+  --primary-foreground: #ffffff;
+  --accent-blue: #7d9bde;
+  --accent-red: #d46b6b;
+  --accent-green: #3f9d78;
+  --accent-amber: #d9962b;
+  --ring-soft: rgba(125, 155, 222, 0.45);
+  --app-gradient: linear-gradient(165deg, #e3e4e8 0%, #d9deed 52%, #c3d0ee 100%);
+  --panel: rgba(255, 255, 255, 0.62);
+  --panel-solid: #f7f8fc;
+  --panel-border: rgba(255, 255, 255, 0.85);
+  --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 18px 40px -24px rgba(40, 56, 110, 0.35);
+  color-scheme: light;
+}
+
+.dark {
+  --background: #090a0f;
+  --foreground: #f1f3f8;
+  --card: #151821;
+  --card-foreground: #f1f3f8;
+  --muted: #1b1f2a;
+  --muted-foreground: #98a0b4;
+  --border: #272c3a;
+  --primary: #f1f3f8;
+  --primary-foreground: #0b0b0f;
+  --accent-blue: #8aa8ff;
+  --accent-red: #f08585;
+  --accent-green: #5ccaa0;
+  --accent-amber: #f0b550;
+  --ring-soft: rgba(138, 168, 255, 0.4);
+  --app-gradient: linear-gradient(165deg, #0a0b10 0%, #0e111b 55%, #131a2e 100%);
+  --panel: rgba(24, 28, 40, 0.62);
+  --panel-solid: #12151e;
+  --panel-border: rgba(255, 255, 255, 0.07);
+  --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 18px 40px -22px rgba(0, 0, 0, 0.8);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-sky: var(--accent-blue);
+  --color-coral: var(--accent-red);
+  --color-mint: var(--accent-green);
+  --color-amber-soft: var(--accent-amber);
+  --color-panel: var(--panel);
+  --color-panel-solid: var(--panel-solid);
+  --font-sans: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--accent-blue) 40%, transparent);
+  }
+  button {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+  }
+}
+
+/* ── Shared surfaces ───────────────────────────────────────────────────── */
+@utility app-bg {
+  background: var(--app-gradient);
+}
+
+@utility glass {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow-soft);
+  -webkit-backdrop-filter: blur(22px) saturate(1.2);
+  backdrop-filter: blur(22px) saturate(1.2);
+}
+
+@utility round-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  color: var(--foreground);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 0.2s,
+    color 0.2s;
+  &:hover {
+    transform: translateY(-1px) scale(1.04);
+  }
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+@utility scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted-foreground) 40%, transparent) transparent;
+}
+
+/* ── Loader: rotating chromatic rim (inspired by the glass capsule) ───── */
+@property --rim-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes rim-spin {
+  to {
+    --rim-angle: 360deg;
+  }
+}
+
+.glass-capsule {
+  --rim-angle: 0deg;
+  position: relative;
+  border: 2.5px solid transparent;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f1f1f3 100%) padding-box,
+    conic-gradient(
+        from var(--rim-angle),
+        rgba(20, 20, 28, 0.9) 0deg,
+        rgba(120, 120, 140, 0.55) 70deg,
+        #ffffff 120deg,
+        #ffffff 170deg,
+        rgba(255, 70, 70, 0.9) 196deg,
+        rgba(255, 220, 70, 0.95) 204deg,
+        rgba(70, 255, 170, 0.9) 212deg,
+        rgba(80, 150, 255, 0.95) 220deg,
+        rgba(20, 20, 28, 0.95) 240deg,
+        rgba(160, 160, 176, 0.7) 300deg,
+        rgba(20, 20, 28, 0.9) 360deg
+      )
+      border-box;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 -10px 18px -10px rgba(0, 0, 0, 0.12) inset,
+    0 24px 40px -22px rgba(0, 0, 0, 0.45);
+  animation: rim-spin 3.4s linear infinite;
+}
+
+/* ── Hero CTA (white pill with a hard black underside) ────────────────── */
+.cta-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.05rem 2rem 1.05rem 2.2rem;
+  border-radius: 9999px;
+  background: #fff;
+  color: #0b0b0f;
+  border: 1.5px solid #0b0b0f;
+  box-shadow: 0 6px 0 0 #0b0b0f;
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.cta-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 0 #0b0b0f;
+}
+.cta-pill:active {
+  transform: translateY(5px);
+  box-shadow: 0 1px 0 0 #0b0b0f;
+}
+
+/* ── Misc animation helpers ───────────────────────────────────────────── */
+@keyframes caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.caret::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: currentColor;
+  animation: caret 1s steps(1) infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes ring-ping {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ── Pixel developer launcher ─────────────────────────────────────────── */
+@keyframes dev-tap {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+.dev-hand {
+  animation: dev-tap 0.38s steps(2, end) infinite;
+}
+.dev-hand-r {
+  animation-duration: 0.46s;
+  animation-delay: -0.2s;
+}
+@keyframes dev-flicker {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 0.06;
+  }
+  70% {
+    opacity: 0.1;
+  }
+}
+.dev-flicker {
+  animation: dev-flicker 2.3s steps(1) infinite;
+  pointer-events: none;
+}
+.dev-caret {
+  animation: caret 0.6s steps(1) infinite;
+}
